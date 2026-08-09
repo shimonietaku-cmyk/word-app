@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    /* スマホでダブルタップ拡大を待つ300msの遅延をなくす */
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+    /* iPhoneの下端（ホームバー）に隠れないようにする */
+    padding-bottom: env(safe-area-inset-bottom);
+    overscroll-behavior-y: none;
+  }
+
+  /* タップしたときの青い反転を消す（自前のフィードバックを使う） */
+  button,
+  [role='button'] {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  /* タップ領域は最低48px（指で押しやすい大きさ） */
+  .tap {
+    @apply min-h-[48px] select-none transition active:scale-[0.98];
+  }
+
+  .card-surface {
+    @apply rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900;
+  }
+
+  .btn-primary {
+    @apply tap flex items-center justify-center rounded-2xl bg-accent-500 px-5 font-bold text-white
+           active:bg-accent-600 disabled:opacity-40;
+  }
+
+  .btn-secondary {
+    @apply tap flex items-center justify-center rounded-2xl border border-gray-300 bg-white px-5
+           font-medium text-gray-700 active:bg-gray-100
+           dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:active:bg-gray-800;
+  }
+
+  .btn-ghost {
+    @apply tap flex items-center justify-center rounded-xl px-3 text-gray-500 active:bg-gray-100
+           dark:text-gray-400 dark:active:bg-gray-800;
+  }
+}
+
+/* 正解・不正解の短いフィードバック（0.2〜0.3秒） */
+@keyframes pop {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pop {
+  animation: pop 0.24s ease-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.22s ease-in-out;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.2s ease-out;
+}
+
+/* 動きを減らす設定の人にはアニメーションを出さない */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
