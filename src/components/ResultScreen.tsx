@@ -11,17 +11,10 @@ interface Props {
   results: AnswerResult[];
   mainCount: number;
   elapsedSec: number;
-  dailyLimitReached: boolean;
   onExit: () => void;
 }
 
-export default function ResultScreen({
-  results,
-  mainCount,
-  elapsedSec,
-  dailyLimitReached,
-  onExit,
-}: Props) {
+export default function ResultScreen({ results, mainCount, elapsedSec, onExit }: Props) {
   const { store } = useApp();
 
   // 統計は「最初の1回の正誤」で数える（出し直しぶんで実力を過大評価しないため）
@@ -68,13 +61,6 @@ export default function ResultScreen({
           <Row label="連続学習" value={streak > 0 ? `🔥 ${streak} 日` : 'またここから'} />
         </div>
 
-        {dailyLimitReached && (
-          <p className="rounded-2xl bg-accent-50 px-4 py-3 text-sm leading-relaxed text-accent-700 dark:bg-accent-900/40 dark:text-accent-200">
-            今日の新しい単語はここまで。
-            <br />
-            あとは復習でしっかり固めよう。
-          </p>
-        )}
       </div>
 
       <button type="button" onClick={onExit} className="btn-primary mt-8 h-14 w-full text-base">

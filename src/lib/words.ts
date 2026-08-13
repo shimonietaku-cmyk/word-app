@@ -41,8 +41,10 @@ export interface WordIndex {
   byFirstChar: Map<string, Word[]>;
   /** jaMain の末尾1文字 → 単語（「〜な」「〜する」など意味カテゴリの近さ） */
   byJaTail: Map<string, Word[]>;
-  /** 学年 → 単語 */
+  /** 学年 → 単語（words.json の登場順＝教科書順。添字+1 が単語番号になる） */
   byGrade: Map<number, Word[]>;
+  /** 単語ID → 学年ごとの単語番号（1始まり）。テスト範囲の指定と表示に使う */
+  numberOf: Map<string, number>;
   /** 単元一覧（words.json の登場順） */
   units: UnitInfo[];
 }
@@ -64,6 +66,7 @@ export function buildIndex(words: Word[]): WordIndex {
     byFirstChar: new Map(),
     byJaTail: new Map(),
     byGrade: new Map(),
+    numberOf: new Map(),
     units: [],
   };
 
@@ -74,6 +77,8 @@ export function buildIndex(words: Word[]): WordIndex {
     push(index.byPosUnit, `${w.pos}|${unitKey(w.grade, w.unit)}`, w);
     push(index.byPosLevel, `${w.pos}|${w.level}`, w);
     push(index.byGrade, w.grade, w);
+    // 学年ごとの通し番号。byGrade は登場順に積むので、いま入れた位置がそのまま番号になる
+    index.numberOf.set(w.id, index.byGrade.get(w.grade)!.length);
 
     const en = w.en.toLowerCase();
     if (en.length >= 2) push(index.byPrefix2, en.slice(0, 2), w);

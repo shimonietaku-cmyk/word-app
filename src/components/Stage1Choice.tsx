@@ -15,16 +15,18 @@ interface Props {
 }
 
 export default function Stage1Choice({ word, choices, disabled, onAnswer }: Props) {
-  const { store, speechAvailable } = useApp();
+  const { store } = useApp();
   const [selected, setSelected] = useState<string | null>(null);
   const startRef = useRef(0);
 
   useEffect(() => {
     setSelected(null);
     startRef.current = performance.now();
-    // 英→日のときは、問題が出た瞬間に自動再生する
-    if (speechAvailable && store.settings.audio) speak(word.en, true);
-  }, [word.id, speechAvailable, store.settings.audio, word.en]);
+    // 英→日のときは、問題が出た瞬間に自動再生する。
+    // 「英語音声が見つかったか」で止めない（Androidは音声一覧が遅れて届くため、
+    //  ここで止めると鳴るはずの端末まで無音になる）。可否の判断は speak() に任せる。
+    if (store.settings.audio) speak(word.en, true);
+  }, [word.id, store.settings.audio, word.en]);
 
   const handle = (choice: string) => {
     if (disabled || selected !== null) return;

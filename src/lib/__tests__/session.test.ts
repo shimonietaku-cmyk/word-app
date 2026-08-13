@@ -86,25 +86,15 @@ describe('buildSession（セッションの組み立て）', () => {
     expect(plan.reviewCount).toBe(10);
   });
 
-  it('1日の新規上限に達したら新規を出さない', () => {
+  it('その日たくさん解いていても新規は止まらない（上限は撤廃した）', () => {
     const words = makeWords(50);
     const index = buildIndex(words);
     const store = makeStore({}, FIXED_NOW);
-    store.history = [{ date: '2026-08-08', answered: 40, correct: 35, newLearned: 20 }];
+    store.history = [{ date: '2026-08-08', answered: 200, correct: 170, newLearned: 120 }];
 
     const plan = buildSession(index, store, { now: FIXED_NOW, rng: seededRng(4) });
-    expect(plan.dailyLimitReached).toBe(true);
-    expect(plan.newCount).toBe(0);
-  });
-
-  it('上限まで残りが少ないときは、その残り数だけ新規を出す', () => {
-    const words = makeWords(50);
-    const index = buildIndex(words);
-    const store = makeStore({}, FIXED_NOW);
-    store.history = [{ date: '2026-08-08', answered: 30, correct: 28, newLearned: 17 }];
-
-    const plan = buildSession(index, store, { now: FIXED_NOW, rng: seededRng(5) });
-    expect(plan.newCount).toBe(3); // 20 - 17
+    expect(plan.newCount).toBe(10);
+    expect(plan.questions).toHaveLength(10);
   });
 
   it('新規学習モードでは教科書の順番を保つ', () => {
@@ -156,25 +146,6 @@ describe('buildSession（セッションの組み立て）', () => {
     expect(plan.questions).toHaveLength(3);
     for (const q of plan.questions) {
       expect(store.cards[q.word.id].leech).toBe(true);
-    }
-  });
-
-  it('テストモードは復習期限を無視して範囲から出す', () => {
-    const words = [...makeWords(20, 'Unit 3'), ...makeWords(20, 'Unit 4')];
-    const index = buildIndex(words);
-    const store = makeStore({}, FIXED_NOW);
-    // すべて学習済み・期限は先（通常モードなら出題対象にならない状態）
-    for (const w of words) {
-      const c = createCardState(FIXED_NOW);
-      c.fsrs = reviewCard(c.fsrs, Rating.Easy, FIXED_NOW);
-      store.cards[w.id] = c;
-    }
-    store.testMode = { active: true, units: [unitKey(1, 'Unit 3')], testDate: '2026-08-20' };
-
-    const plan = buildSession(index, store, { mode: 'test', now: FIXED_NOW, rng: seededRng(9) });
-    expect(plan.questions).toHaveLength(10);
-    for (const q of plan.questions) {
-      expect(q.word.unit).toBe('Unit 3');
     }
   });
 

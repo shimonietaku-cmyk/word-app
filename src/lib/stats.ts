@@ -3,7 +3,7 @@
 import type { Store, Word } from '../types';
 import type { WordIndex, UnitInfo } from './words';
 import { unitKey } from './words';
-import { dateKey, diffDays, parseDateKey } from './storage';
+import { dateKey } from './storage';
 
 export interface UnitProgress {
   info: UnitInfo;
@@ -124,10 +124,4 @@ export function newLearnedDiff(store: Store, now: Date = new Date()): number {
   const t = store.history.find((h) => h.date === today)?.newLearned ?? 0;
   const y = store.history.find((h) => h.date === yesterday)?.newLearned ?? 0;
   return t - y;
-}
-
-/** テスト実施日までの残り日数 */
-export function daysUntil(dateStr: string, now: Date = new Date()): number {
-  if (!dateStr) return 0;
-  return diffDays(dateKey(now), dateKey(parseDateKey(dateStr)));
 }

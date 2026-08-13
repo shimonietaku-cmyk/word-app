@@ -14,8 +14,6 @@ export interface AppState {
   index: WordIndex | null;
   /** 学習記録・設定 */
   store: Store;
-  /** 読み上げが使える端末か */
-  speechAvailable: boolean;
 }
 
 export interface AppActions {

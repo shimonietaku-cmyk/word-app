@@ -1,20 +1,20 @@
-// 学習セッションの画面。10問を出して、間違えた語は最後にもう一度出す。
+// 毎日モードの学習セッション。10問を出して、間違えた語は最後にもう一度出す。
 //
 // 大事にしていること：
 //  ・正解したらボタンを押させず、0.4秒で自動的に次へ進む（テンポを止めない）
 //  ・間違えても学習は止まらない。正解を大きく見せて「わかった」で次へ
 //  ・最後は満点で終われるように、間違えた語を最大3周まで出し直す
+//
+// テスト範囲を集中的に回すドリルは DrillSession.tsx が担当する。
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { AnswerResult, Question } from '../types';
 import { useApp } from '../store/useStore';
 import { buildRetryQuestions, buildSession } from '../lib/session';
 import type { SessionMode } from '../lib/session';
-import { speak, unlockSpeech } from '../lib/speech';
-import Stage1Choice from '../components/Stage1Choice';
-import Stage2Recall from '../components/Stage2Recall';
-import Stage3Produce from '../components/Stage3Produce';
-import SpeakerButton from '../components/SpeakerButton';
+import { speak, stopSpeaking, unlockSpeech } from '../lib/speech';
+import QuestionView from '../components/QuestionView';
+import type { QuestionPhase } from '../components/QuestionView';
 import ResultScreen from '../components/ResultScreen';
 
 interface Props {
@@ -22,18 +22,16 @@ interface Props {
   onExit: () => void;
 }
 
-type Phase = 'question' | 'correct' | 'wrong' | 'result';
-
 /** 間違えた語を出し直す上限（これ以上は繰り返さない） */
 const MAX_RETRY_ROUNDS = 3;
 /** 正解したときに次の問題へ進むまでの時間 */
 const CORRECT_DELAY_MS = 400;
 
 export default function Session({ mode, onExit }: Props) {
-  const { index, store, recordAnswer, finishSession, speechAvailable } = useApp();
+  const { index, store, recordAnswer, finishSession } = useApp();
   const [queue, setQueue] = useState<Question[]>([]);
   const [pos, setPos] = useState(0);
-  const [phase, setPhase] = useState<Phase>('question');
+  const [phase, setPhase] = useState<QuestionPhase | 'result'>('question');
   const [results, setResults] = useState<AnswerResult[]>([]);
   const [wrongIds, setWrongIds] = useState<string[]>([]);
   const [retryRound, setRetryRound] = useState(0);
@@ -51,14 +49,13 @@ export default function Session({ mode, onExit }: Props) {
   useEffect(() => {
     if (!initialPlan) return;
     setQueue(initialPlan.questions);
-    // iOS Safari で音を鳴らすための解錠。必ず画面を触った操作の中で呼ぶ必要があるが、
-    // ここに来る直前の「はじめる」ボタンのタップハンドラでも呼んでいる（二重でも害はない）
     unlockSpeech();
   }, [initialPlan]);
 
   useEffect(() => {
     return () => {
       if (timerRef.current !== null) window.clearTimeout(timerRef.current);
+      stopSpeaking(); // 画面を離れたら読み上げも止める
     };
   }, []);
 
@@ -108,9 +105,7 @@ export default function Session({ mode, onExit }: Props) {
       }
 
       // Stage3（日→英）は答え合わせの瞬間に発音を鳴らす
-      if (current.stage === 3 && speechAvailable && store.settings.audio) {
-        speak(current.word.en, true);
-      }
+      if (current.stage === 3 && store.settings.audio) speak(current.word.en, true);
 
       if (correct) {
         setPhase('correct');
@@ -119,7 +114,7 @@ export default function Session({ mode, onExit }: Props) {
         setPhase('wrong');
       }
     },
-    [current, phase, recordAnswer, advance, speechAvailable, store.settings.audio],
+    [current, phase, recordAnswer, advance, store.settings.audio],
   );
 
   // 結果画面に入ったタイミングでストリークを更新する
@@ -128,7 +123,6 @@ export default function Session({ mode, onExit }: Props) {
     finishSession(results.filter((r) => !r.isRetry).length);
   }, [phase]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // --- 出せる問題が無いとき ---
   if (initialPlan?.empty) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-8 text-center">
@@ -150,7 +144,6 @@ export default function Session({ mode, onExit }: Props) {
         results={results}
         mainCount={mainCount}
         elapsedSec={Math.round((Date.now() - startedAt) / 1000)}
-        dailyLimitReached={initialPlan?.dailyLimitReached ?? false}
         onExit={onExit}
       />
     );
@@ -168,7 +161,6 @@ export default function Session({ mode, onExit }: Props) {
 
   return (
     <div className="flex min-h-screen flex-col">
-      {/* 上部：進み具合とやめるボタン */}
       <header className="flex items-center gap-3 px-4 pt-4">
         <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800">
           <div
@@ -190,64 +182,13 @@ export default function Session({ mode, onExit }: Props) {
         </p>
       )}
 
-      {/* 出題（Stageによって形式が変わる） */}
-      <div className="flex flex-1 flex-col">
-        {current.stage === 1 && (
-          <Stage1Choice
-            key={`${current.word.id}-${pos}-${retryRound}`}
-            word={current.word}
-            choices={current.choices ?? []}
-            disabled={phase !== 'question'}
-            onAnswer={handleAnswer}
-          />
-        )}
-        {current.stage === 2 && (
-          <Stage2Recall
-            key={`${current.word.id}-${pos}-${retryRound}`}
-            word={current.word}
-            disabled={phase !== 'question'}
-            onAnswer={handleAnswer}
-          />
-        )}
-        {current.stage === 3 && (
-          <Stage3Produce
-            key={`${current.word.id}-${pos}-${retryRound}`}
-            word={current.word}
-            mode={current.produceMode ?? 'arrange'}
-            disabled={phase !== 'question'}
-            onAnswer={handleAnswer}
-          />
-        )}
-      </div>
-
-      {/* 正解：短いフィードバックだけ出してすぐ次へ */}
-      {phase === 'correct' && (
-        <div className="pointer-events-none fixed inset-0 z-30 flex items-center justify-center">
-          <div className="animate-pop rounded-full bg-green-500/90 px-8 py-6 text-4xl text-white shadow-lg">
-            ○
-          </div>
-        </div>
-      )}
-
-      {/* 不正解：正解を大きく見せる。責めない */}
-      {phase === 'wrong' && (
-        <div className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full max-w-md animate-fade-up">
-          <div className="rounded-t-3xl border-t border-gray-200 bg-white p-5 shadow-2xl dark:border-gray-800 dark:bg-gray-900">
-            <p className="text-xs text-gray-400">正解はこちら</p>
-            <div className="mt-1 flex items-center gap-3">
-              <p className="break-words text-3xl font-bold">{current.word.en}</p>
-              <SpeakerButton text={current.word.en} size="sm" />
-            </div>
-            <p className="mt-2 text-base leading-relaxed">{current.word.ja.join('、')}</p>
-            {current.word.note && (
-              <p className="mt-1 text-xs text-gray-500">{current.word.note}</p>
-            )}
-            <button type="button" onClick={advance} className="btn-primary mt-4 h-14 w-full text-base">
-              わかった
-            </button>
-          </div>
-        </div>
-      )}
+      <QuestionView
+        question={current}
+        instanceKey={`${current.word.id}-${pos}-${retryRound}`}
+        phase={phase}
+        onAnswer={handleAnswer}
+        onContinue={advance}
+      />
     </div>
   );
 }

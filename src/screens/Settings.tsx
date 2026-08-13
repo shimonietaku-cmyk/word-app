@@ -7,10 +7,11 @@ import ConfirmDialog from '../components/ConfirmDialog';
 
 interface Props {
   onStartParentQuiz: () => void;
+  onOpenSpeechDiagnostics: () => void;
 }
 
-export default function Settings({ onStartParentQuiz }: Props) {
-  const { store, update, resetAll, importFromText, speechAvailable } = useApp();
+export default function Settings({ onStartParentQuiz, onOpenSpeechDiagnostics }: Props) {
+  const { store, update, resetAll, importFromText } = useApp();
   const [confirmReset, setConfirmReset] = useState(false);
   const [message, setMessage] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
@@ -39,21 +40,14 @@ export default function Settings({ onStartParentQuiz }: Props) {
     <div className="px-5 pt-6">
       <h1 className="text-lg font-bold">設定</h1>
 
-      <Group title="学習の量">
+      <Group title="毎日モードの設定">
         <Choice
-          label="1セッションの問題数"
+          label="1回の問題数"
           options={[10, 15, 20]}
           value={store.settings.sessionSize}
           onChange={(v) => set('sessionSize', v)}
           suffix="問"
-        />
-        <Choice
-          label="1日の新しい単語の上限"
-          options={[15, 20, 25]}
-          value={store.settings.dailyNewLimit}
-          onChange={(v) => set('dailyNewLimit', v)}
-          suffix="語"
-          note="増やしすぎると数日後の復習が増えて続きにくくなります。"
+          note="テスト対策モードは範囲を1周ぶん出すので、この設定の影響を受けません。"
         />
         <Choice
           label="復習の多さ"
@@ -67,17 +61,18 @@ export default function Settings({ onStartParentQuiz }: Props) {
 
       <Group title="表示と音">
         <Row label="発音を鳴らす">
-          <Toggle
-            checked={store.settings.audio && speechAvailable}
-            disabled={!speechAvailable}
-            onChange={(v) => set('audio', v)}
-          />
+          <Toggle checked={store.settings.audio} onChange={(v) => set('audio', v)} />
         </Row>
-        {!speechAvailable && (
-          <p className="px-4 pb-3 text-xs text-gray-400">
-            この端末には英語の音声が入っていないため、読み上げは使えません。
-          </p>
-        )}
+        <button
+          type="button"
+          onClick={onOpenSpeechDiagnostics}
+          className="tap w-full border-t border-gray-100 px-4 py-3.5 text-left text-sm dark:border-gray-800"
+        >
+          🔊 音声の診断
+          <span className="mt-0.5 block text-[11px] text-gray-400">
+            音が出ないときはここで原因を調べられます
+          </span>
+        </button>
         <Choice
           label="ダークモード"
           options={['auto', 'light', 'dark'] as const}

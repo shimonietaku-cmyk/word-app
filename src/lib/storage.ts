@@ -27,9 +27,12 @@ export function diffDays(a: string, b: string): number {
   return Math.round(ms / 86400000);
 }
 
+/** 保存データの形式のバージョン。増やしたときは migrate() に移行処理を足すこと */
+export const STORE_VERSION = 2;
+
 export function createInitialStore(now: Date = new Date()): Store {
   return {
-    version: 1,
+    version: 2,
     cards: {},
     streak: {
       current: 0,
@@ -40,7 +43,6 @@ export function createInitialStore(now: Date = new Date()): Store {
       lastFreezeGrantDate: dateKey(now),
     },
     settings: {
-      dailyNewLimit: 20,
       sessionSize: 10,
       scope: { grades: [1, 2], units: [] }, // units が空＝学年まるごと
       audio: true,
@@ -48,7 +50,7 @@ export function createInitialStore(now: Date = new Date()): Store {
       requestRetention: 0.9,
     },
     history: [],
-    testMode: null,
+    drill: { current: null, presets: [] },
   };
 }
 
@@ -70,25 +72,52 @@ export function createCardState(now: Date = new Date()): CardState {
 
 /**
  * 保存されたデータを読み込む。
- * 形が壊れていたり、古いバージョンだったりしたら初期状態を返す（アプリが起動しなくなるのを防ぐ）。
+ * 形が壊れていたら初期状態を返す（アプリが起動しなくなるのを防ぐ）。
+ * 古いバージョンのデータは migrate() で今の形に変換し、学習記録は引き継ぐ。
  */
 export function loadStore(now: Date = new Date()): Store {
   const initial = createInitialStore(now);
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return initial;
-    const parsed = JSON.parse(raw) as Partial<Store>;
-    if (!parsed || typeof parsed !== 'object' || parsed.version !== 1) return initial;
-    return mergeWithDefaults(parsed, initial);
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    if (!isObject(parsed)) return initial;
+    const migrated = migrate(parsed);
+    if (!migrated) return initial;
+    return mergeWithDefaults(migrated, initial);
   } catch {
     return initial;
   }
 }
 
+/**
+ * 古い保存データを今の形に変換する。対応できない形なら null。
+ *
+ * version 1 → 2 の変更点：
+ *  ・settings.dailyNewLimit（1日の新規上限）を廃止
+ *  ・testMode（単元チェックボックス式）を廃止し、drill（番号指定式）に置き換え
+ * カード・履歴・ストリークはそのまま引き継ぐので、これまでの学習記録は消えない。
+ */
+export function migrate(parsed: Record<string, unknown>): Record<string, unknown> | null {
+  const version = parsed.version;
+  if (version === STORE_VERSION) return parsed;
+
+  if (version === 1) {
+    const settings = isObject(parsed.settings) ? { ...parsed.settings } : {};
+    delete settings.dailyNewLimit;
+    const next: Record<string, unknown> = { ...parsed, version: STORE_VERSION, settings };
+    delete next.testMode; // 単元チェックボックス式の旧テストモードは廃止
+    return next;
+  }
+
+  return null; // 未来のバージョンや不明な形式は読み込まない
+}
+
 /** 保存データに足りない項目を初期値で埋める（設定を後から増やしても壊れないように） */
 export function mergeWithDefaults(parsed: Partial<Store>, initial: Store): Store {
+  const drill = isObject(parsed.drill) ? (parsed.drill as Partial<Store['drill']>) : {};
   return {
-    version: 1,
+    version: STORE_VERSION,
     cards: isObject(parsed.cards) ? (parsed.cards as Record<string, CardState>) : initial.cards,
     streak: { ...initial.streak, ...(isObject(parsed.streak) ? parsed.streak : {}) },
     settings: {
@@ -100,7 +129,10 @@ export function mergeWithDefaults(parsed: Partial<Store>, initial: Store): Store
       },
     },
     history: Array.isArray(parsed.history) ? parsed.history : initial.history,
-    testMode: isObject(parsed.testMode) ? (parsed.testMode as Store['testMode']) : null,
+    drill: {
+      current: isObject(drill.current) ? (drill.current as Store['drill']['current']) : null,
+      presets: Array.isArray(drill.presets) ? drill.presets : [],
+    },
   };
 }
 
@@ -132,12 +164,14 @@ export function exportStore(store: Store): string {
   return JSON.stringify(store, null, 2);
 }
 
-/** 進捗の読み込み。壊れたファイルなら null を返す */
+/** 進捗の読み込み。壊れたファイルなら null を返す（古い形式は自動で変換する） */
 export function importStore(text: string, now: Date = new Date()): Store | null {
   try {
-    const parsed = JSON.parse(text) as Partial<Store>;
-    if (!parsed || typeof parsed !== 'object' || parsed.version !== 1) return null;
-    return mergeWithDefaults(parsed, createInitialStore(now));
+    const parsed = JSON.parse(text) as Record<string, unknown>;
+    if (!isObject(parsed)) return null;
+    const migrated = migrate(parsed);
+    if (!migrated) return null;
+    return mergeWithDefaults(migrated, createInitialStore(now));
   } catch {
     return null;
   }

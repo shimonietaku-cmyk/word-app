@@ -29,8 +29,22 @@ import Scope from './screens/Scope';
 const Records = lazy(() => import('./screens/Records'));
 import Settings from './screens/Settings';
 import Session from './screens/Session';
+import DrillSession from './screens/DrillSession';
+import DrillSetup from './screens/DrillSetup';
+import DrillList from './screens/DrillList';
+import SpeechDiagnostics from './screens/SpeechDiagnostics';
 import ParentQuiz from './screens/ParentQuiz';
 import type { SessionMode } from './lib/session';
+
+/** 全画面で開く画面（タブバーを隠すもの） */
+type Overlay =
+  | { kind: 'daily'; mode: SessionMode }
+  | { kind: 'drill' }
+  | { kind: 'drill-setup' }
+  | { kind: 'drill-list' }
+  | { kind: 'speech' }
+  | { kind: 'parent-quiz' }
+  | null;
 
 export default function App() {
   const [status, setStatus] = useState<AppState['status']>('loading');
@@ -38,10 +52,8 @@ export default function App() {
   const [words, setWords] = useState<AppState['words']>([]);
   const [index, setIndex] = useState<WordIndex | null>(null);
   const [store, setStore] = useState<Store>(() => createInitialStore());
-  const [speechAvailable, setSpeechAvailable] = useState(false);
   const [tab, setTab] = useState<TabKey>('home');
-  const [session, setSession] = useState<{ mode: SessionMode } | null>(null);
-  const [parentQuiz, setParentQuiz] = useState(false);
+  const [overlay, setOverlay] = useState<Overlay>(null);
 
   // 保存は「変更のたび」に行うが、連続入力で書き込みが増えすぎないよう少しまとめる
   const saveTimer = useRef<number | null>(null);
@@ -74,7 +86,8 @@ export default function App() {
 
   // --- 読み上げの準備（英語音声があるかどうか） ---
   useEffect(() => {
-    prepareVoices().then(setSpeechAvailable);
+    // 音声一覧の読み込みを促しておく（Android は遅れて届くので、結果は待たずに進む）
+    void prepareVoices();
   }, []);
 
   // --- ダークモードの反映 ---
@@ -201,14 +214,13 @@ export default function App() {
       words,
       index,
       store,
-      speechAvailable,
       update,
       recordAnswer,
       finishSession,
       resetAll,
       importFromText,
     }),
-    [status, error, words, index, store, speechAvailable, update, recordAnswer, finishSession, resetAll, importFromText],
+    [status, error, words, index, store, update, recordAnswer, finishSession, resetAll, importFromText],
   );
 
   if (status === 'loading') {
@@ -231,29 +243,50 @@ export default function App() {
     );
   }
 
+  const close = () => setOverlay(null);
+
   return (
     <AppContext.Provider value={value}>
       <div className="mx-auto min-h-screen w-full max-w-md">
-        {session ? (
-          <Session mode={session.mode} onExit={() => setSession(null)} />
-        ) : parentQuiz ? (
-          <ParentQuiz onExit={() => setParentQuiz(false)} />
-        ) : (
+        {overlay?.kind === 'daily' && <Session mode={overlay.mode} onExit={close} />}
+        {overlay?.kind === 'drill' && (
+          <DrillSession onExit={close} onOpenList={() => setOverlay({ kind: 'drill-list' })} />
+        )}
+        {overlay?.kind === 'drill-setup' && (
+          <DrillSetup onStart={() => setOverlay({ kind: 'drill' })} onCancel={close} />
+        )}
+        {overlay?.kind === 'drill-list' && <DrillList onExit={close} />}
+        {overlay?.kind === 'speech' && <SpeechDiagnostics onExit={close} />}
+        {overlay?.kind === 'parent-quiz' && <ParentQuiz onExit={close} />}
+
+        {!overlay && (
           <>
             <main className="pb-24">
-              {tab === 'home' && <Home onStart={(mode) => setSession({ mode })} />}
-              {tab === 'scope' && <Scope onStartTest={() => setSession({ mode: 'test' })} />}
+              {tab === 'home' && (
+                <Home
+                  onStartDaily={(mode) => setOverlay({ kind: 'daily', mode })}
+                  onStartDrill={() => setOverlay({ kind: 'drill' })}
+                  onSetupDrill={() => setOverlay({ kind: 'drill-setup' })}
+                  onOpenDrillList={() => setOverlay({ kind: 'drill-list' })}
+                />
+              )}
+              {tab === 'scope' && <Scope />}
               {tab === 'records' && (
                 <Suspense
                   fallback={<p className="px-5 pt-10 text-center text-sm text-gray-400">読み込み中…</p>}
                 >
                   <Records
                     onGoScope={() => setTab('scope')}
-                    onStartLeech={() => setSession({ mode: 'leech' })}
+                    onStartLeech={() => setOverlay({ kind: 'daily', mode: 'leech' })}
                   />
                 </Suspense>
               )}
-              {tab === 'settings' && <Settings onStartParentQuiz={() => setParentQuiz(true)} />}
+              {tab === 'settings' && (
+                <Settings
+                  onStartParentQuiz={() => setOverlay({ kind: 'parent-quiz' })}
+                  onOpenSpeechDiagnostics={() => setOverlay({ kind: 'speech' })}
+                />
+              )}
             </main>
             <TabBar current={tab} onChange={setTab} />
           </>

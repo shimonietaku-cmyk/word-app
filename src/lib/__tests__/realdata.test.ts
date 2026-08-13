@@ -8,6 +8,7 @@ import type { Word } from '../../types';
 import { buildIndex, unitKey } from '../words';
 import { buildChoices, generateDistractors } from '../distractors';
 import { buildSession } from '../session';
+import { recordDrillAnswer, startDrill, wordCountOf, wordsInRange } from '../drill';
 import { seededRng } from '../random';
 import { FIXED_NOW, makeStore } from './helpers';
 
@@ -92,11 +93,75 @@ describe('速度（タップに16ms以内で反応するため）', () => {
     expect(perQuestion).toBeLessThan(2);
   });
 
-  it('セッションの組み立ては16ms以内', () => {
+  /**
+   * 1回だけ測ると、まだ最適化されていない初回実行の値になってしまう。
+   * 数回まわして中央値を見る（実際に使うときの速さに近い）。
+   */
+  function medianMs(fn: () => void, runs = 7): number {
+    const times: number[] = [];
+    fn(); // 暖機（初回は測らない）
+    for (let i = 0; i < runs; i++) {
+      const start = performance.now();
+      fn();
+      times.push(performance.now() - start);
+    }
+    return times.sort((a, b) => a - b)[Math.floor(runs / 2)];
+  }
+
+  it('毎日モードの組み立ては16ms以内', () => {
     const store = makeStore({}, FIXED_NOW);
-    const start = performance.now();
-    buildSession(index, store, { now: FIXED_NOW, rng: seededRng(13) });
-    expect(performance.now() - start).toBeLessThan(16);
+    const ms = medianMs(() => buildSession(index, store, { now: FIXED_NOW, rng: seededRng(13) }));
+    expect(ms).toBeLessThan(16);
+  });
+
+  it('テスト範囲200語ぶんのドリル開始は16ms以内', () => {
+    const ms = medianMs(() =>
+      startDrill(index, { grade: 1, from: 1, to: 200 }, null, seededRng(17)),
+    );
+    expect(ms).toBeLessThan(16);
+  });
+
+  it('1年ぜんぶ（1,115語）をドリル範囲にしても16ms以内', () => {
+    const ms = medianMs(() =>
+      startDrill(index, { grade: 1, from: 1, to: 1115 }, null, seededRng(19)),
+    );
+    expect(ms).toBeLessThan(16);
+  });
+});
+
+describe('実データでのテスト範囲指定', () => {
+  it('学年ごとの番号が教科書順に振られている', () => {
+    expect(wordCountOf(index, 1)).toBe(1115);
+    expect(wordCountOf(index, 2)).toBe(846);
+    // 1年の1番は教科書の最初の単元の最初の語
+    const first = wordsInRange(index, { grade: 1, from: 1, to: 1 })[0];
+    expect(first.unit).toBe("Let's Be Friends!");
+    expect(index.numberOf.get(first.id)).toBe(1);
+  });
+
+  it('2年も1番から振り直される', () => {
+    const first = wordsInRange(index, { grade: 2, from: 1, to: 1 })[0];
+    expect(first.grade).toBe(2);
+    expect(index.numberOf.get(first.id)).toBe(1);
+  });
+
+  it('「1〜50番」で50語ちょうど取れる', () => {
+    expect(wordsInRange(index, { grade: 1, from: 1, to: 50 })).toHaveLength(50);
+    expect(wordsInRange(index, { grade: 2, from: 101, to: 150 })).toHaveLength(50);
+  });
+
+  it('実データでも1周で全単語がちょうど1回ずつ出る', () => {
+    const range = { grade: 2 as const, from: 51, to: 130 };
+    let state = startDrill(index, range, null, seededRng(21));
+    const served: string[] = [];
+    while (state.queue.length > 0) {
+      const id = state.queue[0];
+      served.push(id);
+      state = recordDrillAnswer(state, id, served.length % 4 !== 0);
+    }
+    const expected = wordsInRange(index, range).map((w) => w.id).sort();
+    expect(served).toHaveLength(80);
+    expect([...served].sort()).toEqual(expected);
   });
 });
 

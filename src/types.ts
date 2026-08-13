@@ -83,8 +83,7 @@ export interface StreakState {
 }
 
 export interface Settings {
-  dailyNewLimit: number; // 15 / 20 / 25
-  sessionSize: number; // 10 / 15 / 20
+  sessionSize: number; // 10 / 15 / 20（毎日モードの1回の問題数）
   scope: { grades: number[]; units: string[] };
   audio: boolean;
   darkMode: 'auto' | 'light' | 'dark';
@@ -99,19 +98,70 @@ export interface HistoryEntry {
   newLearned: number;
 }
 
-export interface TestMode {
-  active: boolean;
-  units: string[];
-  testDate: string; // "2026-08-20"
+// ───────────────────────────────────────────────
+// テスト対策ドリル
+//
+// 毎日モード（FSRSで忘れかけた頃に出す方式）とは別の仕組み。
+// テスト範囲を単語番号で指定し、範囲内を1周ずつ確実に回す。
+// ───────────────────────────────────────────────
+
+/**
+ * 出題範囲。番号は「学年ごとの通し番号」で、1年は1〜1115、2年は1〜846。
+ * words.json の並び順（＝教科書順）の何番目か、を表す。
+ */
+export interface DrillRange {
+  grade: 1 | 2;
+  /** 開始番号（1始まり・この番号を含む） */
+  from: number;
+  /** 終了番号（この番号を含む） */
+  to: number;
+}
+
+/** よく使う範囲の保存（例：「Unit 5 テスト」1〜50） */
+export interface DrillPreset {
+  id: string;
+  name: string;
+  range: DrillRange;
+}
+
+/** ドリルでの1単語ぶんの成績（FSRSとは別に、範囲内の進み具合を見るために持つ） */
+export interface DrillStat {
+  asked: number;
+  correct: number;
+  wrong: number;
+  /** 連続正解数 */
+  streak: number;
+  /** 直近の結果。未出題は null */
+  last: 'correct' | 'wrong' | null;
+}
+
+export interface DrillState {
+  range: DrillRange;
+  /** 何周目か（1始まり） */
+  round: number;
+  /** この周の残りキュー（単語ID。先頭から出す） */
+  queue: string[];
+  /** この周のはじめのキュー長（進捗表示の分母） */
+  roundTotal: number;
+  /** 範囲内の単語ごとの成績 */
+  stats: Record<string, DrillStat>;
+  /** 「まちがえた単語だけ」の特別な周かどうか（周回数に数えない） */
+  wrongOnly: boolean;
+}
+
+export interface DrillStore {
+  /** 進行中のドリル。範囲未設定なら null */
+  current: DrillState | null;
+  presets: DrillPreset[];
 }
 
 export interface Store {
-  version: 1;
+  version: 2;
   cards: Record<string, CardState>;
   streak: StreakState;
   settings: Settings;
   history: HistoryEntry[];
-  testMode: TestMode | null;
+  drill: DrillStore;
 }
 
 /** セッション中の1問 */
@@ -126,6 +176,8 @@ export interface Question {
   isNew: boolean;
   /** 最後の再出題ぶん（FSRSと統計に反映しない） */
   isRetry: boolean;
+  /** 学年ごとの単語番号（ドリルの画面表示に使う） */
+  number?: number;
 }
 
 /** 1問に答えた結果 */

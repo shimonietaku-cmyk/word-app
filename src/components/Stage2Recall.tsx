@@ -17,7 +17,7 @@ interface Props {
 }
 
 export default function Stage2Recall({ word, disabled, onAnswer }: Props) {
-  const { store, speechAvailable } = useApp();
+  const { store } = useApp();
   const [flipped, setFlipped] = useState(false);
   const [dragX, setDragX] = useState(0);
   const startRef = useRef(0);
@@ -28,8 +28,9 @@ export default function Stage2Recall({ word, disabled, onAnswer }: Props) {
     setFlipped(false);
     setDragX(0);
     startRef.current = performance.now();
-    if (speechAvailable && store.settings.audio) speak(word.en, true);
-  }, [word.id, speechAvailable, store.settings.audio, word.en]);
+    // 可否の判断は speak() に任せる（理由は Stage1Choice のコメント参照）
+    if (store.settings.audio) speak(word.en, true);
+  }, [word.id, store.settings.audio, word.en]);
 
   const flip = () => {
     if (flipped || disabled) return;
