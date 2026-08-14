@@ -179,19 +179,27 @@ export function nextRound(
   return { ...state, round, queue, roundTotal: queue.length, wrongOnly: false };
 }
 
-/** 直近で間違えた単語だけを、もう一度出す周を作る */
+/**
+ * まちがえた単語だけを、もう一度出す周を作る。
+ *
+ * wordIds には「その周でまちがえた単語」を呼び出し側から渡す。
+ * 渡さない場合は「最後の解答がまちがいだった単語」を対象にする。
+ * ※ 一度まちがえたあと同じ周で正解した単語は後者に含まれないため、
+ *   画面のボタンに出す語数と実際の出題数がズレないよう、必ず前者を渡すこと。
+ */
 export function wrongOnlyRound(
   index: WordIndex,
   state: DrillState,
+  wordIds?: string[],
   rng: () => number = Math.random,
 ): DrillState {
-  const words = wordsInRange(index, state.range).filter(
-    (w) => state.stats[w.id]?.last === 'wrong',
-  );
-  const queue = shuffle(
-    words.map((w) => w.id),
-    rng,
-  );
+  const inRange = new Set(wordsInRange(index, state.range).map((w) => w.id));
+  const targets =
+    wordIds && wordIds.length > 0
+      ? wordIds.filter((id) => inRange.has(id))
+      : [...inRange].filter((id) => state.stats[id]?.last === 'wrong');
+
+  const queue = shuffle(targets, rng);
   return { ...state, queue, roundTotal: queue.length, wrongOnly: true };
 }
 

@@ -215,10 +215,40 @@ describe('まちがえた単語だけの周', () => {
     const index = makeIndex();
     let state = startDrill(index, { grade: 1, from: 1, to: 20 }, null, seededRng(13));
     const missed = state.queue.slice(0, 4);
-    state = wrongOnlyRound(index, playRound(state, (id) => !missed.includes(id)).state, seededRng(14));
+    state = wrongOnlyRound(
+      index,
+      playRound(state, (id) => !missed.includes(id)).state,
+      undefined,
+      seededRng(14),
+    );
 
     expect([...state.queue].sort()).toEqual([...missed].sort());
     expect(state.wrongOnly).toBe(true);
+  });
+
+  it('渡した単語がそのまま出る（ボタンの語数と実際の出題数を一致させるため）', () => {
+    const index = makeIndex();
+    let state = startDrill(index, { grade: 1, from: 1, to: 20 }, null, seededRng(30));
+    // g1-0 は一度まちがえたあと正解した＝last は 'correct' になる
+    state = recordDrillAnswer(state, 'g1-0', false);
+    state = recordDrillAnswer(state, 'g1-0', true);
+    state = recordDrillAnswer(state, 'g1-1', false);
+
+    // 「その周でまちがえた単語」を渡せば、あとで正解した g1-0 も対象に含まれる
+    const withList = wrongOnlyRound(index, state, ['g1-0', 'g1-1'], seededRng(31));
+    expect([...withList.queue].sort()).toEqual(['g1-0', 'g1-1']);
+    expect(withList.roundTotal).toBe(2);
+
+    // 渡さない場合は「最後がまちがい」の語だけになる
+    const withoutList = wrongOnlyRound(index, state, undefined, seededRng(32));
+    expect(withoutList.queue).toEqual(['g1-1']);
+  });
+
+  it('範囲外の単語が混ざっていても取り除かれる', () => {
+    const index = makeIndex();
+    const state = startDrill(index, { grade: 1, from: 1, to: 10 }, null, seededRng(33));
+    const round = wrongOnlyRound(index, state, ['g1-0', 'g1-50', 'g2-0'], seededRng(34));
+    expect(round.queue).toEqual(['g1-0']); // 11番以降と2年は範囲外
   });
 
   it('この周は周回数に数えない', () => {
@@ -228,7 +258,12 @@ describe('まちがえた単語だけの周', () => {
     expect(state.round).toBe(2);
 
     const missed = state.queue.slice(0, 2);
-    state = wrongOnlyRound(index, playRound(state, (id) => !missed.includes(id)).state, seededRng(17));
+    state = wrongOnlyRound(
+      index,
+      playRound(state, (id) => !missed.includes(id)).state,
+      undefined,
+      seededRng(17),
+    );
     expect(state.round).toBe(2); // 増えない
 
     state = nextRound(index, playRound(state, () => true).state, seededRng(18));

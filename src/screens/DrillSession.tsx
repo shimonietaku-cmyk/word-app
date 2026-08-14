@@ -3,13 +3,12 @@
 // 毎日モードと違い、範囲内を1周ぶん通しで出す。
 // 1問ごとに進捗を保存するので、途中でやめても次に開いたときに続きから再開できる。
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { DrillState, Question } from '../types';
 import { useApp } from '../store/useStore';
 import { makeQuestion, cardOf } from '../lib/session';
 import {
   answeredInRound,
-  isRoundComplete,
   nextRound,
   recordDrillAnswer,
   wordsInRange,
@@ -45,19 +44,46 @@ export default function DrillSession({ onExit, onOpenList }: Props) {
     };
   }, []);
 
-  const currentId = drill?.queue[0] ?? null;
+  /**
+   * いま画面に出している問題。
+   *
+   * 出題キューの先頭から直接求めてはいけない。
+   * 回答するとその単語はキューから即座に取り除かれるため、
+   * 不正解の「正解はこちら」を表示している最中に次の単語へ切り替わってしまい、
+   * 答えがずれて見える。表示中の問題はここに保持し、
+   * 「わかった」を押す（または正解の演出が終わる）まで次に進めない。
+   */
+  const [shown, setShown] = useState<{
+    question: Question;
+    /** この周で何問目か。表示中は固定する（回答直後に数字が動かないように） */
+    position: number;
+    /** 同じ単語が再登場したときに中身を作り直すための連番 */
+    seq: number;
+  } | null>(null);
+  const seqRef = useRef(0);
 
-  // 出題は1問ずつその場で作る。範囲が1000語でも最初の待ち時間が出ないようにするため
-  const question: Question | null = useMemo(() => {
-    if (!index || !currentId) return null;
-    const word = index.byId.get(currentId);
-    if (!word) return null;
-    const q = makeQuestion(word, cardOf(store, word.id, new Date()), index);
-    q.number = index.numberOf.get(word.id);
-    return q;
-    // store 全体を依存に入れると毎回作り直しになるので、単語が変わったときだけ作る
+  // 表示中の問題が無くなったら、キューの先頭から次の1問を作る。
+  // 1問ずつその場で作るのは、範囲が1000語でも最初の待ち時間を出さないため。
+  useEffect(() => {
+    if (shown || roundDone || !drill || !index) return;
+    const nextId = drill.queue[0];
+    if (!nextId) {
+      setRoundDone(true); // この周は出し切った
+      return;
+    }
+    const word = index.byId.get(nextId);
+    if (!word) return;
+    const question = makeQuestion(word, cardOf(store, word.id, new Date()), index);
+    question.number = index.numberOf.get(word.id);
+    seqRef.current += 1;
+    setShown({ question, position: answeredInRound(drill) + 1, seq: seqRef.current });
+    setPhase('question');
+    // store を依存に入れると解答のたびに作り直しになるので、意図的に外している
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, currentId]);
+  }, [shown, roundDone, drill, index]);
+
+  /** 次の問題へ進む（表示中の問題を手放すと、上の useEffect が次を作る） */
+  const goNext = useCallback(() => setShown(null), []);
 
   const setDrill = useCallback(
     (updater: (prev: DrillState) => DrillState) => {
@@ -72,15 +98,17 @@ export default function DrillSession({ onExit, onOpenList }: Props) {
 
   const handleAnswer = useCallback(
     (correct: boolean, elapsedMs: number) => {
-      if (!question || phase !== 'question') return;
+      if (!shown || phase !== 'question') return;
+      const { word, stage } = shown.question;
 
-      // ドリルの進捗（範囲内の成績）と、アプリ全体の記録（Stage・FSRS・今日の実績）の両方を更新する
-      setDrill((prev) => recordDrillAnswer(prev, question.word.id, correct));
+      // ドリルの進捗（範囲内の成績）と、アプリ全体の記録（Stage・FSRS・今日の実績）の両方を更新する。
+      // ここでキューからは取り除かれるが、画面の表示は shown が持っているので切り替わらない。
+      setDrill((prev) => recordDrillAnswer(prev, word.id, correct));
       recordAnswer({
-        wordId: question.word.id,
+        wordId: word.id,
         correct,
         elapsedMs,
-        stage: question.stage,
+        stage,
         isNew: false,
         isRetry: false,
       });
@@ -90,28 +118,22 @@ export default function DrillSession({ onExit, onOpenList }: Props) {
         wrong: t.wrong + (correct ? 0 : 1),
       }));
       if (!correct) {
-        setWrongThisRun((prev) =>
-          prev.includes(question.word.id) ? prev : [...prev, question.word.id],
-        );
+        setWrongThisRun((prev) => (prev.includes(word.id) ? prev : [...prev, word.id]));
       }
 
       // Stage3（日→英）は答え合わせの瞬間に発音を鳴らす
-      if (question.stage === 3 && store.settings.audio) speak(question.word.en, true);
+      if (stage === 3 && store.settings.audio) speak(word.en, true);
 
       if (correct) {
         setPhase('correct');
-        timerRef.current = window.setTimeout(() => setPhase('question'), CORRECT_DELAY_MS);
+        timerRef.current = window.setTimeout(goNext, CORRECT_DELAY_MS);
       } else {
+        // 不正解のときは「正解はこちら」を出したまま止め、「わかった」で次へ進む
         setPhase('wrong');
       }
     },
-    [question, phase, setDrill, recordAnswer, store.settings.audio],
+    [shown, phase, setDrill, recordAnswer, store.settings.audio, goNext],
   );
-
-  // キューが空になった＝この周を出し終えた
-  useEffect(() => {
-    if (drill && isRoundComplete(drill) && phase === 'question') setRoundDone(true);
-  }, [drill, phase]);
 
   if (!drill || !index) {
     return (
@@ -136,15 +158,16 @@ export default function DrillSession({ onExit, onOpenList }: Props) {
           setDrill((prev) => nextRound(index, prev));
           setTally({ correct: 0, wrong: 0 });
           setWrongThisRun([]);
+          setShown(null);
           setRoundDone(false);
-          setPhase('question');
         }}
         onRetryWrong={() => {
-          setDrill((prev) => wrongOnlyRound(index, prev));
+          // ボタンに出している語数と実際の出題数が必ず一致するよう、この周の記録を渡す
+          setDrill((prev) => wrongOnlyRound(index, prev, wrongThisRun));
           setTally({ correct: 0, wrong: 0 });
           setWrongThisRun([]);
+          setShown(null);
           setRoundDone(false);
-          setPhase('question');
         }}
         onOpenList={onOpenList}
         onExit={onExit}
@@ -152,7 +175,7 @@ export default function DrillSession({ onExit, onOpenList }: Props) {
     );
   }
 
-  if (!question) {
+  if (!shown) {
     return (
       <div className="flex min-h-screen items-center justify-center text-gray-400">
         <p>準備中…</p>
@@ -160,7 +183,7 @@ export default function DrillSession({ onExit, onOpenList }: Props) {
     );
   }
 
-  const done = answeredInRound(drill);
+  const { question, position } = shown;
   const total = drill.roundTotal;
   const rangeTotal = wordsInRange(index, drill.range).length;
 
@@ -171,7 +194,7 @@ export default function DrillSession({ onExit, onOpenList }: Props) {
           <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800">
             <div
               className="h-full rounded-full bg-accent-500 transition-[width] duration-300"
-              style={{ width: `${total === 0 ? 0 : Math.round((done / total) * 100)}%` }}
+              style={{ width: `${total === 0 ? 0 : Math.round(((position - 1) / total) * 100)}%` }}
             />
           </div>
           <button type="button" onClick={onExit} className="btn-ghost h-11 text-sm">
@@ -181,7 +204,7 @@ export default function DrillSession({ onExit, onOpenList }: Props) {
 
         <div className="mt-2 flex items-center justify-between text-sm">
           <span className="font-bold tabular-nums">
-            {Math.min(done + 1, total)} / {total}問
+            {Math.min(position, total)} / {total}問
           </span>
           <span className="flex gap-3 tabular-nums">
             <span className="text-green-600 dark:text-green-400">○ {tally.correct}</span>
@@ -199,10 +222,10 @@ export default function DrillSession({ onExit, onOpenList }: Props) {
 
       <QuestionView
         question={question}
-        instanceKey={`${question.word.id}-${done}-${drill.round}`}
+        instanceKey={`${question.word.id}-${shown.seq}`}
         phase={phase}
         onAnswer={handleAnswer}
-        onContinue={() => setPhase('question')}
+        onContinue={goNext}
       />
     </div>
   );

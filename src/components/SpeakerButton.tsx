@@ -4,7 +4,7 @@
 // Android は音声一覧が遅れて届くため、鳴るはずの端末でもボタンが消えてしまっていた。
 // いまは常に表示し、鳴らなかったときだけ理由をその場に出す。
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FAILURE_MESSAGE, getLastFailure, speak, subscribeSpeech } from '../lib/speech';
 import type { SpeechFailure } from '../lib/speech';
 import { useApp } from '../store/useStore';
@@ -15,12 +15,22 @@ interface Props {
   className?: string;
 }
 
+/** 理由を出しっぱなしにすると選択肢を覆ってしまうので、少ししたら自動で消す */
+const REASON_VISIBLE_MS = 6000;
+
 export default function SpeakerButton({ text, size = 'lg', className = '' }: Props) {
   const { store } = useApp();
   const [failure, setFailure] = useState<SpeechFailure>(null);
   const [showReason, setShowReason] = useState(false);
+  const timers = useRef<number[]>([]);
 
   useEffect(() => subscribeSpeech(() => setFailure(getLastFailure())), []);
+
+  // 画面を離れるときに、待機中のタイマーを片づける
+  useEffect(() => {
+    const list = timers.current;
+    return () => list.forEach((t) => window.clearTimeout(t));
+  }, []);
 
   if (!store.settings.audio) return null;
 
@@ -29,11 +39,16 @@ export default function SpeakerButton({ text, size = 'lg', className = '' }: Pro
     // タップの中から直接呼ぶ（間に await や setTimeout を挟むと鳴らない端末がある）
     speak(text, true);
     // 失敗していれば、少し待ってから理由を出す（onerror は非同期で届く）
-    window.setTimeout(() => {
-      const f = getLastFailure();
-      setFailure(f);
-      setShowReason(Boolean(f));
-    }, 600);
+    timers.current.push(
+      window.setTimeout(() => {
+        const f = getLastFailure();
+        setFailure(f);
+        setShowReason(Boolean(f));
+        if (f) {
+          timers.current.push(window.setTimeout(() => setShowReason(false), REASON_VISIBLE_MS));
+        }
+      }, 600),
+    );
   };
 
   return (
