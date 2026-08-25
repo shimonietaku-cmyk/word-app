@@ -6,6 +6,8 @@ import { AppContext } from './store/useStore';
 import type { AppState } from './store/useStore';
 import { buildIndex, loadWords } from './lib/words';
 import type { WordIndex } from './lib/words';
+import { buildIdiomIndex, loadIdioms } from './lib/idioms';
+import type { IdiomIndex } from './lib/idioms';
 import {
   createCardState,
   createInitialStore,
@@ -32,6 +34,9 @@ import Session from './screens/Session';
 import DrillSession from './screens/DrillSession';
 import DrillSetup from './screens/DrillSetup';
 import DrillList from './screens/DrillList';
+import IdiomSession from './screens/IdiomSession';
+import IdiomSetup from './screens/IdiomSetup';
+import IdiomList from './screens/IdiomList';
 import SpeechDiagnostics from './screens/SpeechDiagnostics';
 import ParentQuiz from './screens/ParentQuiz';
 import type { SessionMode } from './lib/session';
@@ -42,6 +47,9 @@ type Overlay =
   | { kind: 'drill' }
   | { kind: 'drill-setup' }
   | { kind: 'drill-list' }
+  | { kind: 'idiom' }
+  | { kind: 'idiom-setup' }
+  | { kind: 'idiom-list' }
   | { kind: 'speech' }
   | { kind: 'parent-quiz' }
   | null;
@@ -51,6 +59,7 @@ export default function App() {
   const [error, setError] = useState('');
   const [words, setWords] = useState<AppState['words']>([]);
   const [index, setIndex] = useState<WordIndex | null>(null);
+  const [idioms, setIdioms] = useState<IdiomIndex | null>(null);
   const [store, setStore] = useState<Store>(() => createInitialStore());
   const [tab, setTab] = useState<TabKey>('home');
   const [overlay, setOverlay] = useState<Overlay>(null);
@@ -63,7 +72,11 @@ export default function App() {
     let cancelled = false;
     (async () => {
       try {
-        const data = await loadWords(import.meta.env.BASE_URL);
+        // 熟語データは無くても単語学習はできるので、失敗しても起動は止めない
+        const [data, idiomData] = await Promise.all([
+          loadWords(import.meta.env.BASE_URL),
+          loadIdioms(import.meta.env.BASE_URL).catch(() => []),
+        ]);
         if (cancelled) return;
         const idx = buildIndex(data);
         const loaded = pruneCards(loadStore(), data);
@@ -71,6 +84,7 @@ export default function App() {
         const withFreezes = { ...loaded, streak: grantFreezes(loaded.streak) };
         setWords(data);
         setIndex(idx);
+        setIdioms(idiomData.length > 0 ? buildIdiomIndex(idiomData, idx) : null);
         setStore(withFreezes);
         setStatus('ready');
       } catch (e) {
@@ -173,6 +187,30 @@ export default function App() {
     [update],
   );
 
+  /**
+   * 「今日の実績」だけを増やす。
+   * 熟語モードは同じ熟語を1日に何度も出すので、
+   * これを FSRS（忘れかけた頃に出す仕組み）に混ぜると復習日がずれてしまう。
+   * そのため回数と正答だけを今日の履歴に足す。
+   */
+  const recordPractice = useCallback(
+    (correct: boolean) => {
+      update((prev) => {
+        const today = dateKey();
+        const history = [...prev.history];
+        const i = history.findIndex((h) => h.date === today);
+        const entry =
+          i >= 0 ? { ...history[i] } : { date: today, answered: 0, correct: 0, newLearned: 0 };
+        entry.answered += 1;
+        if (correct) entry.correct += 1;
+        if (i >= 0) history[i] = entry;
+        else history.push(entry);
+        return { ...prev, history: history.slice(-400) };
+      });
+    },
+    [update],
+  );
+
   /** セッションを終えたときにストリークを更新する */
   const finishSession = useCallback(
     (answered: number) => {
@@ -213,14 +251,29 @@ export default function App() {
       error,
       words,
       index,
+      idioms,
       store,
       update,
       recordAnswer,
+      recordPractice,
       finishSession,
       resetAll,
       importFromText,
     }),
-    [status, error, words, index, store, update, recordAnswer, finishSession, resetAll, importFromText],
+    [
+      status,
+      error,
+      words,
+      index,
+      idioms,
+      store,
+      update,
+      recordAnswer,
+      recordPractice,
+      finishSession,
+      resetAll,
+      importFromText,
+    ],
   );
 
   if (status === 'loading') {
@@ -256,6 +309,17 @@ export default function App() {
           <DrillSetup onStart={() => setOverlay({ kind: 'drill' })} onCancel={close} />
         )}
         {overlay?.kind === 'drill-list' && <DrillList onExit={close} />}
+        {overlay?.kind === 'idiom' && (
+          <IdiomSession
+            onExit={close}
+            onOpenList={() => setOverlay({ kind: 'idiom-list' })}
+            onSetup={() => setOverlay({ kind: 'idiom-setup' })}
+          />
+        )}
+        {overlay?.kind === 'idiom-setup' && (
+          <IdiomSetup onStart={() => setOverlay({ kind: 'idiom' })} onCancel={close} />
+        )}
+        {overlay?.kind === 'idiom-list' && <IdiomList onExit={close} />}
         {overlay?.kind === 'speech' && <SpeechDiagnostics onExit={close} />}
         {overlay?.kind === 'parent-quiz' && <ParentQuiz onExit={close} />}
 
@@ -268,6 +332,9 @@ export default function App() {
                   onStartDrill={() => setOverlay({ kind: 'drill' })}
                   onSetupDrill={() => setOverlay({ kind: 'drill-setup' })}
                   onOpenDrillList={() => setOverlay({ kind: 'drill-list' })}
+                  onStartIdioms={() => setOverlay({ kind: 'idiom' })}
+                  onSetupIdioms={() => setOverlay({ kind: 'idiom-setup' })}
+                  onOpenIdiomList={() => setOverlay({ kind: 'idiom-list' })}
                 />
               )}
               {tab === 'scope' && <Scope />}

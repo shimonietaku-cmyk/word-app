@@ -68,9 +68,11 @@ export function copiesFor(stat: DrillStat, round: number): number {
  * 同じ単語を複数回出すとき（2周目以降）、連続して出ると答えを覚えているだけで
  * 正解できてしまう。そこで周を「区画」に分け、同じ単語の2回目・3回目が
  * 別の区画に入るように配ってから、区画ごとにシャッフルする。
+ *
+ * id さえあれば使えるので、テスト対策ドリルと熟語モードの両方から呼んでいる。
  */
 export function buildQueue(
-  words: Word[],
+  words: { id: string }[],
   stats: Record<string, DrillStat>,
   round: number,
   rng: () => number = Math.random,

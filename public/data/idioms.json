@@ -1,0 +1,1946 @@
+[
+ {
+  "id": "g1-let-s-be-friends-0003",
+  "en": "French fries",
+  "kind": "compound",
+  "q": "I want ___ and a hamburger.",
+  "a": "French fries",
+  "ja": "私はフライドポテトとハンバーガーがほしいです。"
+ },
+ {
+  "id": "g1-let-s-be-friends-0042",
+  "en": "eye contact",
+  "kind": "idiom",
+  "q": "Please make ___ when you talk.",
+  "a": "eye contact",
+  "ja": "話すときは目を合わせてください。"
+ },
+ {
+  "id": "g1-let-s-be-friends-0176",
+  "en": "want to 〜",
+  "kind": "idiom",
+  "q": "I ___ go to Canada.",
+  "a": "want to",
+  "ja": "私はカナダに行きたいです。"
+ },
+ {
+  "id": "g1-unit-1-0008",
+  "en": "rice ball",
+  "kind": "compound",
+  "q": "My mother makes a ___ every morning.",
+  "a": "rice ball",
+  "ja": "母は毎朝おにぎりを作ります。"
+ },
+ {
+  "id": "g1-unit-1-0027",
+  "en": "South Africa",
+  "kind": "compound",
+  "q": "He is from ___.",
+  "a": "South Africa",
+  "ja": "彼は南アフリカ出身です。"
+ },
+ {
+  "id": "g1-unit-1-0028",
+  "en": "〜 year(s) old",
+  "kind": "idiom",
+  "q": "My sister is ten ___.",
+  "a": "years old",
+  "ja": "私の妹は10歳です。"
+ },
+ {
+  "id": "g1-unit-1-0045",
+  "en": "not 〜 very much",
+  "kind": "idiom",
+  "q": "I do ___ like fish ___.",
+  "a": "not|very much",
+  "ja": "私は魚がそんなに好きではありません。"
+ },
+ {
+  "id": "g1-unit-1-0051",
+  "en": "New York",
+  "kind": "compound",
+  "q": "She lives in ___.",
+  "a": "New York",
+  "ja": "彼女はニューヨークに住んでいます。"
+ },
+ {
+  "id": "g1-unit-2-0003",
+  "en": "brass band",
+  "kind": "compound",
+  "q": "I am in the ___ at school.",
+  "a": "brass band",
+  "ja": "私は学校でブラスバンドに入っています。"
+ },
+ {
+  "id": "g1-unit-2-0017",
+  "en": "come in",
+  "kind": "idiom",
+  "q": "Please ___ and sit down.",
+  "a": "come in",
+  "ja": "中に入って座ってください。"
+ },
+ {
+  "id": "g1-unit-2-0019",
+  "en": "be interested in 〜",
+  "kind": "idiom",
+  "q": "I ___ Japanese history.",
+  "a": "am interested in",
+  "ja": "私は日本の歴史に興味があります。"
+ },
+ {
+  "id": "g1-unit-2-0020",
+  "en": "very much",
+  "kind": "idiom",
+  "q": "Thank you ___.",
+  "a": "very much",
+  "ja": "どうもありがとう。"
+ },
+ {
+  "id": "g1-unit-2-0042",
+  "en": "a little",
+  "kind": "idiom",
+  "q": "I can speak English ___.",
+  "a": "a little",
+  "ja": "私は少しは英語を話せます。"
+ },
+ {
+  "id": "g1-unit-2-0043",
+  "en": "listen to 〜",
+  "kind": "idiom",
+  "q": "I ___ music before bed.",
+  "a": "listen to",
+  "ja": "私は寝る前に音楽を聞きます。"
+ },
+ {
+  "id": "g1-unit-2-0049",
+  "en": "tongue twister",
+  "kind": "compound",
+  "q": "This ___ is very hard to say.",
+  "a": "tongue twister",
+  "ja": "この早口言葉はとても言いにくいです。"
+ },
+ {
+  "id": "g1-unit-2-0051",
+  "en": "curry and rice",
+  "kind": "compound",
+  "q": "We have ___ for dinner today.",
+  "a": "curry and rice",
+  "ja": "今日の夕食はカレーライスです。"
+ },
+ {
+  "id": "g1-world-tour-1-0003",
+  "en": "break time",
+  "kind": "compound",
+  "q": "We play outside during ___.",
+  "a": "break time",
+  "ja": "私たちは休み時間に外で遊びます。"
+ },
+ {
+  "id": "g1-unit-3-0033",
+  "en": "do one's homework",
+  "kind": "idiom",
+  "q": "I ___ after dinner.",
+  "a": "do my homework",
+  "ja": "私は夕食のあとに宿題をします。"
+ },
+ {
+  "id": "g1-unit-3-0034",
+  "en": "go -ing",
+  "kind": "idiom",
+  "q": "Let's ___ in the river.",
+  "a": "go swimming",
+  "ja": "川へ泳ぎに行こう。"
+ },
+ {
+  "id": "g1-unit-3-0035",
+  "en": "every year",
+  "kind": "idiom",
+  "q": "We visit my grandmother ___.",
+  "a": "every year",
+  "ja": "私たちは毎年祖母を訪ねます。"
+ },
+ {
+  "id": "g1-unit-3-0037",
+  "en": "get up",
+  "kind": "idiom",
+  "q": "I ___ at six every morning.",
+  "a": "get up",
+  "ja": "私は毎朝6時に起きます。"
+ },
+ {
+  "id": "g1-unit-3-0045",
+  "en": "of course",
+  "kind": "idiom",
+  "q": "___, I can help you.",
+  "a": "Of course",
+  "ja": "もちろん、手伝えますよ。"
+ },
+ {
+  "id": "g1-unit-3-0060",
+  "en": "goldfish scooping",
+  "kind": "compound",
+  "q": "I like ___ at the summer festival.",
+  "a": "goldfish scooping",
+  "ja": "私は夏祭りの金魚すくいが好きです。"
+ },
+ {
+  "id": "g1-unit-3-0063",
+  "en": "shaved ice",
+  "kind": "compound",
+  "q": "___ is nice on a hot day.",
+  "a": "Shaved ice",
+  "ja": "暑い日にはかき氷がいいです。"
+ },
+ {
+  "id": "g1-unit-3-0068",
+  "en": "take a picture",
+  "kind": "idiom",
+  "q": "Can I ___ here?",
+  "a": "take a picture",
+  "ja": "ここで写真を撮ってもいいですか。"
+ },
+ {
+  "id": "g1-let-s-read-1-0014",
+  "en": "every day",
+  "kind": "idiom",
+  "q": "I study English ___.",
+  "a": "every day",
+  "ja": "私は毎日英語を勉強します。"
+ },
+ {
+  "id": "g1-let-s-read-1-0015",
+  "en": "look at 〜",
+  "kind": "idiom",
+  "q": "Please ___ the blackboard.",
+  "a": "look at",
+  "ja": "黒板を見てください。"
+ },
+ {
+  "id": "g1-let-s-read-1-0016",
+  "en": "turn 〜 around",
+  "kind": "idiom",
+  "q": "Please ___ your chair ___.",
+  "a": "turn|around",
+  "ja": "いすの向きを変えてください。"
+ },
+ {
+  "id": "g1-unit-4-0006",
+  "en": "social studies",
+  "kind": "compound",
+  "q": "I like ___ the best.",
+  "a": "social studies",
+  "ja": "私は社会科がいちばん好きです。"
+ },
+ {
+  "id": "g1-unit-4-0008",
+  "en": "junior high school",
+  "kind": "compound",
+  "q": "My brother goes to ___.",
+  "a": "junior high school",
+  "ja": "兄は中学校に通っています。"
+ },
+ {
+  "id": "g1-unit-4-0049",
+  "en": "floor plan",
+  "kind": "compound",
+  "q": "This is the ___ of our house.",
+  "a": "floor plan",
+  "ja": "これが私たちの家の見取り図です。"
+ },
+ {
+  "id": "g1-unit-4-0057",
+  "en": "high school",
+  "kind": "compound",
+  "q": "My sister is a ___ student.",
+  "a": "high school",
+  "ja": "姉は高校生です。"
+ },
+ {
+  "id": "g1-unit-4-0064",
+  "en": "in front of 〜",
+  "kind": "idiom",
+  "q": "Let's meet ___ the station.",
+  "a": "in front of",
+  "ja": "駅の前で会いましょう。"
+ },
+ {
+  "id": "g1-unit-4-0065",
+  "en": "over here",
+  "kind": "idiom",
+  "q": "Come ___, please.",
+  "a": "over here",
+  "ja": "こちらに来てください。"
+ },
+ {
+  "id": "g1-unit-4-0066",
+  "en": "be good at 〜",
+  "kind": "idiom",
+  "q": "She ___ playing the piano.",
+  "a": "is good at",
+  "ja": "彼女はピアノを弾くのが上手です。"
+ },
+ {
+  "id": "g1-unit-5-0019",
+  "en": "turn on 〜",
+  "kind": "idiom",
+  "q": "Please ___ the light.",
+  "a": "turn on",
+  "ja": "明かりをつけてください。"
+ },
+ {
+  "id": "g1-unit-5-0020",
+  "en": "after school",
+  "kind": "idiom",
+  "q": "We play soccer ___.",
+  "a": "after school",
+  "ja": "私たちは放課後にサッカーをします。"
+ },
+ {
+  "id": "g1-unit-5-0041",
+  "en": "nurse's office",
+  "kind": "compound",
+  "q": "He is in the ___ now.",
+  "a": "nurse's office",
+  "ja": "彼は今、保健室にいます。"
+ },
+ {
+  "id": "g1-unit-5-0046",
+  "en": "be famous for 〜",
+  "kind": "idiom",
+  "q": "Kyoto ___ its old temples.",
+  "a": "is famous for",
+  "ja": "京都は古い寺で有名です。"
+ },
+ {
+  "id": "g1-unit-5-0048",
+  "en": "next to 〜",
+  "kind": "idiom",
+  "q": "The bank is ___ the post office.",
+  "a": "next to",
+  "ja": "銀行は郵便局の隣にあります。"
+ },
+ {
+  "id": "g1-unit-5-0074",
+  "en": "video game",
+  "kind": "compound",
+  "q": "I like this ___.",
+  "a": "video game",
+  "ja": "私はこのテレビゲームが好きです。"
+ },
+ {
+  "id": "g1-unit-5-0091",
+  "en": "take a bath",
+  "kind": "idiom",
+  "q": "I ___ before dinner.",
+  "a": "take a bath",
+  "ja": "私は夕食の前に風呂に入ります。"
+ },
+ {
+  "id": "g1-unit-5-0092",
+  "en": "go to bed",
+  "kind": "idiom",
+  "q": "I ___ at ten every night.",
+  "a": "go to bed",
+  "ja": "私は毎晩10時に寝ます。"
+ },
+ {
+  "id": "g1-unit-5-0093",
+  "en": "write in one's diary",
+  "kind": "idiom",
+  "q": "I ___ every night.",
+  "a": "write in my diary",
+  "ja": "私は毎晩日記をつけます。"
+ },
+ {
+  "id": "g1-unit-5-0094",
+  "en": "after that",
+  "kind": "idiom",
+  "q": "I did my homework. ___, I watched TV.",
+  "a": "After that",
+  "ja": "私は宿題をしました。その後、テレビを見ました。"
+ },
+ {
+  "id": "g1-unit-5-0095",
+  "en": "at noon",
+  "kind": "idiom",
+  "q": "We eat lunch ___.",
+  "a": "at noon",
+  "ja": "私たちは正午に昼食を食べます。"
+ },
+ {
+  "id": "g1-daily-life-scene-2-0020",
+  "en": "ice cream",
+  "kind": "compound",
+  "q": "I want some ___.",
+  "a": "ice cream",
+  "ja": "アイスクリームがほしいです。"
+ },
+ {
+  "id": "g1-daily-life-scene-2-0033",
+  "en": "in total",
+  "kind": "idiom",
+  "q": "We have twenty students ___.",
+  "a": "in total",
+  "ja": "全体で20人の生徒がいます。"
+ },
+ {
+  "id": "g1-unit-6-0026",
+  "en": "a lot of 〜",
+  "kind": "idiom",
+  "q": "There are ___ books in my room.",
+  "a": "a lot of",
+  "ja": "私の部屋にはたくさんの本があります。"
+ },
+ {
+  "id": "g1-unit-6-0027",
+  "en": "give up",
+  "kind": "idiom",
+  "q": "Don't ___. You can do it.",
+  "a": "give up",
+  "ja": "あきらめないで。君ならできる。"
+ },
+ {
+  "id": "g1-unit-6-0028",
+  "en": "a lot",
+  "kind": "idiom",
+  "q": "I learned ___ from this book.",
+  "a": "a lot",
+  "ja": "私はこの本からたくさんのことを学びました。"
+ },
+ {
+  "id": "g1-unit-6-0029",
+  "en": "these days",
+  "kind": "idiom",
+  "q": "It is very hot ___.",
+  "a": "these days",
+  "ja": "このごろとても暑いです。"
+ },
+ {
+  "id": "g1-unit-6-0041",
+  "en": "Puerto Rico",
+  "kind": "compound",
+  "q": "She was born in ___.",
+  "a": "Puerto Rico",
+  "ja": "彼女はプエルトリコで生まれました。"
+ },
+ {
+  "id": "g1-unit-6-0048",
+  "en": "have a cold",
+  "kind": "idiom",
+  "q": "I ___ today.",
+  "a": "have a cold",
+  "ja": "私は今日、風邪をひいています。"
+ },
+ {
+  "id": "g1-unit-6-0049",
+  "en": "in bed",
+  "kind": "idiom",
+  "q": "My father is ___ with a fever.",
+  "a": "in bed",
+  "ja": "父は熱で寝ています。"
+ },
+ {
+  "id": "g1-unit-6-0080",
+  "en": "work hard",
+  "kind": "idiom",
+  "q": "You must ___ for the test.",
+  "a": "work hard",
+  "ja": "テストのために懸命に勉強しなければなりません。"
+ },
+ {
+  "id": "g1-unit-6-0081",
+  "en": "a little bit",
+  "kind": "idiom",
+  "q": "I am ___ tired.",
+  "a": "a little bit",
+  "ja": "私はほんの少し疲れています。"
+ },
+ {
+  "id": "g1-unit-6-0083",
+  "en": "go to school",
+  "kind": "idiom",
+  "q": "I ___ by bike.",
+  "a": "go to school",
+  "ja": "私は自転車で学校に行きます。"
+ },
+ {
+  "id": "g1-unit-6-0084",
+  "en": "a little 〜",
+  "kind": "idiom",
+  "q": "I want ___ water.",
+  "a": "a little",
+  "ja": "私は少しの水がほしいです。"
+ },
+ {
+  "id": "g1-unit-6-0085",
+  "en": "a lot",
+  "kind": "idiom",
+  "q": "My little brother cries ___.",
+  "a": "a lot",
+  "ja": "弟はよく泣きます。"
+ },
+ {
+  "id": "g1-unit-6-0086",
+  "en": "at home",
+  "kind": "idiom",
+  "q": "I study ___ every evening.",
+  "a": "at home",
+  "ja": "私は毎晩家で勉強します。"
+ },
+ {
+  "id": "g1-unit-6-0087",
+  "en": "... not 〜 either",
+  "kind": "idiom",
+  "q": "I can't ski, and my brother can't ___.",
+  "a": "either",
+  "ja": "私はスキーができないし、弟もできません。"
+ },
+ {
+  "id": "g1-unit-6-0088",
+  "en": "take out 〜",
+  "kind": "idiom",
+  "q": "Please ___ your textbook.",
+  "a": "take out",
+  "ja": "教科書を出してください。"
+ },
+ {
+  "id": "g1-unit-6-0089",
+  "en": "take a lesson",
+  "kind": "idiom",
+  "q": "I ___ every Saturday.",
+  "a": "take a lesson",
+  "ja": "私は毎週土曜日に授業を受けます。"
+ },
+ {
+  "id": "g1-daily-life-scene-4-0016",
+  "en": "get to 〜",
+  "kind": "idiom",
+  "q": "I ___ school at eight.",
+  "a": "get to",
+  "ja": "私は8時に学校に着きます。"
+ },
+ {
+  "id": "g1-daily-life-scene-4-0021",
+  "en": "on foot",
+  "kind": "idiom",
+  "q": "I go to school ___.",
+  "a": "on foot",
+  "ja": "私は徒歩で学校に行きます。"
+ },
+ {
+  "id": "g1-unit-7-0003",
+  "en": "New Year",
+  "kind": "compound",
+  "q": "We visit a shrine at ___.",
+  "a": "New Year",
+  "ja": "私たちは新年に神社を訪れます。"
+ },
+ {
+  "id": "g1-unit-7-0012",
+  "en": "New Year's Eve",
+  "kind": "compound",
+  "q": "We eat soba on ___.",
+  "a": "New Year's Eve",
+  "ja": "私たちは大みそかにそばを食べます。"
+ },
+ {
+  "id": "g1-unit-7-0032",
+  "en": "clean up 〜",
+  "kind": "idiom",
+  "q": "Let's ___ the classroom.",
+  "a": "clean up",
+  "ja": "教室を掃除しよう。"
+ },
+ {
+  "id": "g1-unit-7-0033",
+  "en": "take part in 〜",
+  "kind": "idiom",
+  "q": "I want to ___ the contest.",
+  "a": "take part in",
+  "ja": "私はそのコンテストに参加したいです。"
+ },
+ {
+  "id": "g1-unit-7-0049",
+  "en": "New Year's Day",
+  "kind": "compound",
+  "q": "We eat osechi on ___.",
+  "a": "New Year's Day",
+  "ja": "私たちは元日におせちを食べます。"
+ },
+ {
+  "id": "g1-unit-7-0054",
+  "en": "by the way",
+  "kind": "idiom",
+  "q": "___, do you have a pen?",
+  "a": "By the way",
+  "ja": "ところで、ペンを持っていますか。"
+ },
+ {
+  "id": "g1-unit-7-0060",
+  "en": "stay up",
+  "kind": "idiom",
+  "q": "Don't ___ too late.",
+  "a": "stay up",
+  "ja": "あまり遅くまで起きていてはいけません。"
+ },
+ {
+  "id": "g1-unit-7-0077",
+  "en": "get well",
+  "kind": "idiom",
+  "q": "I hope you ___ soon.",
+  "a": "get well",
+  "ja": "早く元気になってね。"
+ },
+ {
+  "id": "g1-unit-7-0079",
+  "en": "have a fever",
+  "kind": "idiom",
+  "q": "She ___ and can't come today.",
+  "a": "has a fever",
+  "ja": "彼女は熱があるので今日は来られません。"
+ },
+ {
+  "id": "g1-unit-7-0082",
+  "en": "take a photo",
+  "kind": "idiom",
+  "q": "Let's ___ together.",
+  "a": "take a photo",
+  "ja": "いっしょに写真を撮ろう。"
+ },
+ {
+  "id": "g1-unit-7-0083",
+  "en": "air mail",
+  "kind": "compound",
+  "q": "I send this letter by ___.",
+  "a": "air mail",
+  "ja": "私はこの手紙を航空郵便で送ります。"
+ },
+ {
+  "id": "g1-unit-7-0095",
+  "en": "〜 Street",
+  "kind": "compound",
+  "q": "The shop is on Green ___.",
+  "a": "Street",
+  "ja": "その店はグリーン通りにあります。"
+ },
+ {
+  "id": "g1-unit-7-0115",
+  "en": "this year",
+  "kind": "idiom",
+  "q": "I am thirteen ___.",
+  "a": "this year",
+  "ja": "私は今年13歳です。"
+ },
+ {
+  "id": "g1-unit-7-0118",
+  "en": "for the first time",
+  "kind": "idiom",
+  "q": "I saw snow ___.",
+  "a": "for the first time",
+  "ja": "私は初めて雪を見ました。"
+ },
+ {
+  "id": "g1-unit-7-0119",
+  "en": "Best wishes,",
+  "kind": "idiom",
+  "q": "___ Emma",
+  "a": "Best wishes,",
+  "ja": "ご多幸を祈って。エマより"
+ },
+ {
+  "id": "g1-unit-7-0120",
+  "en": "lots of 〜",
+  "kind": "idiom",
+  "q": "I have ___ friends here.",
+  "a": "lots of",
+  "ja": "私にはここにたくさんの友達がいます。"
+ },
+ {
+  "id": "g1-daily-life-scene-5-0009",
+  "en": "greeting card",
+  "kind": "compound",
+  "q": "I make a ___ for my father.",
+  "a": "greeting card",
+  "ja": "私は父にグリーティング・カードを作ります。"
+ },
+ {
+  "id": "g1-daily-life-scene-5-0026",
+  "en": "up to 〜",
+  "kind": "idiom",
+  "q": "This bus can carry ___ fifty people.",
+  "a": "up to",
+  "ja": "このバスは最高50人まで運べます。"
+ },
+ {
+  "id": "g1-unit-8-0013",
+  "en": "get ready",
+  "kind": "idiom",
+  "q": "Please ___ for school.",
+  "a": "get ready",
+  "ja": "学校の準備をしてください。"
+ },
+ {
+  "id": "g1-unit-8-0028",
+  "en": "put up 〜",
+  "kind": "idiom",
+  "q": "Let's ___ this poster on the wall.",
+  "a": "put up",
+  "ja": "このポスターを壁に取り付けよう。"
+ },
+ {
+  "id": "g1-unit-8-0041",
+  "en": "have no idea",
+  "kind": "idiom",
+  "q": "I ___ about his plan.",
+  "a": "have no idea",
+  "ja": "私は彼の計画について全然わかりません。"
+ },
+ {
+  "id": "g1-unit-8-0043",
+  "en": "so much",
+  "kind": "idiom",
+  "q": "Thank you ___.",
+  "a": "so much",
+  "ja": "本当にありがとう。"
+ },
+ {
+  "id": "g1-unit-8-0045",
+  "en": "last night",
+  "kind": "idiom",
+  "q": "I studied math ___.",
+  "a": "last night",
+  "ja": "私は昨夜、数学を勉強しました。"
+ },
+ {
+  "id": "g1-let-s-read-2-0025",
+  "en": "climb up",
+  "kind": "idiom",
+  "q": "The cat can ___ the tree.",
+  "a": "climb up",
+  "ja": "そのねこは木によじ登れます。"
+ },
+ {
+  "id": "g1-let-s-read-2-0026",
+  "en": "look delicious",
+  "kind": "idiom",
+  "q": "These cakes ___.",
+  "a": "look delicious",
+  "ja": "これらのケーキはおいしそうです。"
+ },
+ {
+  "id": "g1-let-s-read-2-0027",
+  "en": "one day",
+  "kind": "idiom",
+  "q": "___, a boy came to the village.",
+  "a": "One day",
+  "ja": "ある日、一人の少年が村にやって来ました。"
+ },
+ {
+  "id": "g1-let-s-read-2-0028",
+  "en": "chew on 〜",
+  "kind": "idiom",
+  "q": "My dog likes to ___ this toy.",
+  "a": "chew on",
+  "ja": "うちの犬はこのおもちゃをかむのが好きです。"
+ },
+ {
+  "id": "g1-let-s-read-2-0029",
+  "en": "get away",
+  "kind": "idiom",
+  "q": "The bird tried to ___.",
+  "a": "get away",
+  "ja": "その鳥は逃げ出そうとしました。"
+ },
+ {
+  "id": "g1-let-s-read-2-0030",
+  "en": "keep one's promise",
+  "kind": "idiom",
+  "q": "You must ___.",
+  "a": "keep your promise",
+  "ja": "あなたは約束を守らなければなりません。"
+ },
+ {
+  "id": "g1-you-can-do-it-3-0003",
+  "en": "school lunch",
+  "kind": "compound",
+  "q": "___ is my favorite time.",
+  "a": "School lunch",
+  "ja": "学校給食は私の大好きな時間です。"
+ },
+ {
+  "id": "g2-unit-1-0010",
+  "en": "roller coaster",
+  "kind": "compound",
+  "q": "I want to ride the ___.",
+  "a": "roller coaster",
+  "ja": "私はジェットコースターに乗りたいです。"
+ },
+ {
+  "id": "g2-unit-1-0013",
+  "en": "for the first time in 〜",
+  "kind": "idiom",
+  "q": "I met him ___ three years.",
+  "a": "for the first time in",
+  "ja": "私は3年ぶりに彼に会いました。"
+ },
+ {
+  "id": "g2-unit-1-0014",
+  "en": "half a year",
+  "kind": "idiom",
+  "q": "I studied Chinese for ___.",
+  "a": "half a year",
+  "ja": "私は半年間、中国語を勉強しました。"
+ },
+ {
+  "id": "g2-unit-1-0023",
+  "en": "comic book",
+  "kind": "compound",
+  "q": "I read a ___ every night.",
+  "a": "comic book",
+  "ja": "私は毎晩漫画本を読みます。"
+ },
+ {
+  "id": "g2-unit-1-0026",
+  "en": "come out of 〜",
+  "kind": "idiom",
+  "q": "Some birds ___ the nest.",
+  "a": "come out of",
+  "ja": "何羽かの鳥が巣から外へ出ます。"
+ },
+ {
+  "id": "g2-unit-1-0028",
+  "en": "look for 〜",
+  "kind": "idiom",
+  "q": "Please help me ___ my key.",
+  "a": "look for",
+  "ja": "かぎをさがすのを手伝ってください。"
+ },
+ {
+  "id": "g2-unit-1-0031",
+  "en": "feel down",
+  "kind": "idiom",
+  "q": "I ___ when it rains.",
+  "a": "feel down",
+  "ja": "雨が降ると私は落ち込みます。"
+ },
+ {
+  "id": "g2-unit-1-0063",
+  "en": "at first",
+  "kind": "idiom",
+  "q": "___, English was hard for me.",
+  "a": "At first",
+  "ja": "最初は英語が私には難しかったです。"
+ },
+ {
+  "id": "g2-unit-1-0064",
+  "en": "talk about 〜",
+  "kind": "idiom",
+  "q": "Let's ___ our summer plans.",
+  "a": "talk about",
+  "ja": "夏の予定について話しましょう。"
+ },
+ {
+  "id": "g2-unit-1-0065",
+  "en": "be excited about 〜",
+  "kind": "idiom",
+  "q": "I ___ the school trip.",
+  "a": "am excited about",
+  "ja": "私は修学旅行にわくわくしています。"
+ },
+ {
+  "id": "g2-unit-1-0066",
+  "en": "by oneself",
+  "kind": "idiom",
+  "q": "He made this cake ___.",
+  "a": "by himself",
+  "ja": "彼は一人でこのケーキを作りました。"
+ },
+ {
+  "id": "g2-unit-1-0067",
+  "en": "come up",
+  "kind": "idiom",
+  "q": "Please ___ and say hello.",
+  "a": "come up",
+  "ja": "近づいてあいさつしてください。"
+ },
+ {
+  "id": "g2-unit-1-0068",
+  "en": "have a good time",
+  "kind": "idiom",
+  "q": "I hope you ___.",
+  "a": "have a good time",
+  "ja": "楽しい時を過ごしてね。"
+ },
+ {
+  "id": "g2-daily-life-scene-1-0002",
+  "en": "be there",
+  "kind": "idiom",
+  "q": "I will ___ at five.",
+  "a": "be there",
+  "ja": "私は5時にそこにいます。"
+ },
+ {
+  "id": "g2-daily-life-scene-1-0003",
+  "en": "come with 〜",
+  "kind": "idiom",
+  "q": "Will you ___ me?",
+  "a": "come with",
+  "ja": "私といっしょに来てくれますか。"
+ },
+ {
+  "id": "g2-unit-2-0012",
+  "en": "all right",
+  "kind": "idiom",
+  "q": "Are you ___?",
+  "a": "all right",
+  "ja": "あなたは大丈夫ですか。"
+ },
+ {
+  "id": "g2-unit-2-0014",
+  "en": "on the way home",
+  "kind": "idiom",
+  "q": "I bought milk ___.",
+  "a": "on the way home",
+  "ja": "私は家に帰る途中で牛乳を買いました。"
+ },
+ {
+  "id": "g2-unit-2-0026",
+  "en": "try to 〜",
+  "kind": "idiom",
+  "q": "I ___ speak English every day.",
+  "a": "try to",
+  "ja": "私は毎日英語を話そうと努力しています。"
+ },
+ {
+  "id": "g2-unit-2-0040",
+  "en": "arm wrestling",
+  "kind": "compound",
+  "q": "Let's have an ___ match.",
+  "a": "arm wrestling",
+  "ja": "腕相撲の試合をしよう。"
+ },
+ {
+  "id": "g2-unit-2-0049",
+  "en": "be proud of 〜",
+  "kind": "idiom",
+  "q": "I ___ my team.",
+  "a": "am proud of",
+  "ja": "私は自分のチームを誇りに思っています。"
+ },
+ {
+  "id": "g2-unit-2-0051",
+  "en": "do a great job",
+  "kind": "idiom",
+  "q": "You ___ today!",
+  "a": "did a great job",
+  "ja": "今日はうまくやったね。"
+ },
+ {
+  "id": "g2-unit-2-0053",
+  "en": "make progress",
+  "kind": "idiom",
+  "q": "I want to ___ in English.",
+  "a": "make progress",
+  "ja": "私は英語で上達したいです。"
+ },
+ {
+  "id": "g2-unit-2-0055",
+  "en": "thanks to 〜",
+  "kind": "idiom",
+  "q": "___ your help, I finished it.",
+  "a": "Thanks to",
+  "ja": "あなたの助けのおかげで、私はそれを終えました。"
+ },
+ {
+  "id": "g2-unit-2-0058",
+  "en": "work together",
+  "kind": "idiom",
+  "q": "Let's ___ on this project.",
+  "a": "work together",
+  "ja": "この企画で協力しよう。"
+ },
+ {
+  "id": "g2-unit-2-0059",
+  "en": "each other",
+  "kind": "idiom",
+  "q": "We help ___ every day.",
+  "a": "each other",
+  "ja": "私たちは毎日お互いを助け合います。"
+ },
+ {
+  "id": "g2-daily-life-scene-2-0008",
+  "en": "〜 hour(s) a day",
+  "kind": "idiom",
+  "q": "I study two ___.",
+  "a": "hours a day",
+  "ja": "私は1日2時間勉強します。"
+ },
+ {
+  "id": "g2-daily-life-scene-2-0009",
+  "en": "all over 〜",
+  "kind": "idiom",
+  "q": "Snow fell ___ the town.",
+  "a": "all over",
+  "ja": "雪が町じゅうに降りました。"
+ },
+ {
+  "id": "g2-active-grammar-1-0007",
+  "en": "wish to 〜",
+  "kind": "idiom",
+  "q": "I ___ see you again.",
+  "a": "wish to",
+  "ja": "私はまたあなたに会いたいと思います。"
+ },
+ {
+  "id": "g2-unit-3-0011",
+  "en": "look forward to -ing",
+  "kind": "idiom",
+  "q": "I ___ seeing you.",
+  "a": "look forward to",
+  "ja": "私はあなたに会うのを楽しみに待っています。"
+ },
+ {
+  "id": "g2-unit-3-0012",
+  "en": "the day after tomorrow",
+  "kind": "idiom",
+  "q": "The test is ___.",
+  "a": "the day after tomorrow",
+  "ja": "テストは明後日です。"
+ },
+ {
+  "id": "g2-unit-3-0037",
+  "en": "be ready for 〜",
+  "kind": "idiom",
+  "q": "___ you ___ the game?",
+  "a": "Are|ready for",
+  "ja": "試合の準備はできていますか。"
+ },
+ {
+  "id": "g2-unit-3-0039",
+  "en": "all day",
+  "kind": "idiom",
+  "q": "It rained ___.",
+  "a": "all day",
+  "ja": "一日中雨が降りました。"
+ },
+ {
+  "id": "g2-unit-3-0048",
+  "en": "swimming pool",
+  "kind": "compound",
+  "q": "There is a ___ near my house.",
+  "a": "swimming pool",
+  "ja": "私の家の近くにプールがあります。"
+ },
+ {
+  "id": "g2-unit-3-0059",
+  "en": "go straight home",
+  "kind": "idiom",
+  "q": "You should ___ after school.",
+  "a": "go straight home",
+  "ja": "放課後はまっすぐ家に帰るべきです。"
+ },
+ {
+  "id": "g2-unit-3-0061",
+  "en": "show 〜 around",
+  "kind": "idiom",
+  "q": "I will ___ you ___ our school.",
+  "a": "show|around",
+  "ja": "私が学校を案内して回ります。"
+ },
+ {
+  "id": "g2-unit-3-0063",
+  "en": "a bit",
+  "kind": "idiom",
+  "q": "I am ___ tired.",
+  "a": "a bit",
+  "ja": "私は少し疲れています。"
+ },
+ {
+  "id": "g2-unit-3-0064",
+  "en": "have a picnic",
+  "kind": "idiom",
+  "q": "Let's ___ in the park.",
+  "a": "have a picnic",
+  "ja": "公園でピクニックをしよう。"
+ },
+ {
+  "id": "g2-unit-3-0065",
+  "en": "feel free to 〜",
+  "kind": "idiom",
+  "q": "___ ask me anything.",
+  "a": "Feel free to",
+  "ja": "遠慮なく何でも聞いてください。"
+ },
+ {
+  "id": "g2-unit-3-0066",
+  "en": "a few 〜",
+  "kind": "idiom",
+  "q": "I have ___ questions.",
+  "a": "a few",
+  "ja": "私はいくつか質問があります。"
+ },
+ {
+  "id": "g2-unit-3-0068",
+  "en": "stay at[in]",
+  "kind": "idiom",
+  "q": "We will ___ a hotel.",
+  "a": "stay at",
+  "ja": "私たちはホテルに滞在します。"
+ },
+ {
+  "id": "g2-daily-life-scene-3-0002",
+  "en": "boarding pass",
+  "kind": "compound",
+  "q": "Please show me your ___.",
+  "a": "boarding pass",
+  "ja": "搭乗券を見せてください。"
+ },
+ {
+  "id": "g2-daily-life-scene-3-0003",
+  "en": "degree Celsius",
+  "kind": "compound",
+  "q": "It is thirty ___ today.",
+  "a": "degrees Celsius",
+  "ja": "今日は摂氏30度です。"
+ },
+ {
+  "id": "g2-let-s-read-1-0044",
+  "en": "a bag of 〜",
+  "kind": "idiom",
+  "q": "I bought ___ potatoes.",
+  "a": "a bag of",
+  "ja": "私はじゃがいもを1袋買いました。"
+ },
+ {
+  "id": "g2-let-s-read-1-0045",
+  "en": "after a while",
+  "kind": "idiom",
+  "q": "___, the rain stopped.",
+  "a": "After a while",
+  "ja": "しばらくすると、雨がやみました。"
+ },
+ {
+  "id": "g2-let-s-read-1-0046",
+  "en": "decide to 〜",
+  "kind": "idiom",
+  "q": "I ___ join the tennis club.",
+  "a": "decided to",
+  "ja": "私はテニス部に入ることに決めました。"
+ },
+ {
+  "id": "g2-let-s-read-1-0047",
+  "en": "sit down",
+  "kind": "idiom",
+  "q": "Please ___ here.",
+  "a": "sit down",
+  "ja": "ここに座ってください。"
+ },
+ {
+  "id": "g2-let-s-read-1-0048",
+  "en": "cause a scene",
+  "kind": "idiom",
+  "q": "Don't ___ in the store.",
+  "a": "cause a scene",
+  "ja": "店の中で騒ぎを起こしてはいけません。"
+ },
+ {
+  "id": "g2-let-s-read-1-0049",
+  "en": "each time 〜",
+  "kind": "idiom",
+  "q": "___ I see him, he is smiling.",
+  "a": "Each time",
+  "ja": "彼に会うごとに、彼はほほえんでいます。"
+ },
+ {
+  "id": "g2-let-s-read-1-0050",
+  "en": "in half",
+  "kind": "idiom",
+  "q": "Please cut the cake ___.",
+  "a": "in half",
+  "ja": "ケーキを半分に切ってください。"
+ },
+ {
+  "id": "g2-let-s-read-1-0051",
+  "en": "put away 〜",
+  "kind": "idiom",
+  "q": "Please ___ your toys.",
+  "a": "put away",
+  "ja": "おもちゃをしまってください。"
+ },
+ {
+  "id": "g2-let-s-read-1-0052",
+  "en": "to one's 〜",
+  "kind": "idiom",
+  "q": "___ surprise, he won the race.",
+  "a": "To my",
+  "ja": "驚いたことに、彼はレースに勝ちました。"
+ },
+ {
+  "id": "g2-let-s-read-1-0053",
+  "en": "to one's horror",
+  "kind": "idiom",
+  "q": "___, a big snake was there.",
+  "a": "To my horror",
+  "ja": "ぞっとしたことに、大きなへびがそこにいました。"
+ },
+ {
+  "id": "g2-let-s-read-1-0054",
+  "en": "be wrong about 〜",
+  "kind": "idiom",
+  "q": "I ___ him. He is very kind.",
+  "a": "was wrong about",
+  "ja": "私は彼を考え違いしていました。彼はとても親切です。"
+ },
+ {
+  "id": "g2-daily-life-scene-4-0002",
+  "en": "black tea",
+  "kind": "compound",
+  "q": "I drink ___ every morning.",
+  "a": "black tea",
+  "ja": "私は毎朝紅茶を飲みます。"
+ },
+ {
+  "id": "g2-daily-life-scene-4-0005",
+  "en": "French toast",
+  "kind": "compound",
+  "q": "My father makes ___ on Sundays.",
+  "a": "French toast",
+  "ja": "父は日曜日にフレンチトーストを作ります。"
+ },
+ {
+  "id": "g2-daily-life-scene-4-0024",
+  "en": "for now",
+  "kind": "idiom",
+  "q": "That's all ___.",
+  "a": "for now",
+  "ja": "今のところ以上です。"
+ },
+ {
+  "id": "g2-you-can-do-it-1-0009",
+  "en": "ice hockey",
+  "kind": "compound",
+  "q": "___ is popular in Canada.",
+  "a": "Ice hockey",
+  "ja": "アイスホッケーはカナダで人気です。"
+ },
+ {
+  "id": "g2-world-tour-1-0002",
+  "en": "around the world",
+  "kind": "idiom",
+  "q": "People ___ love soccer.",
+  "a": "around the world",
+  "ja": "世界中の人々がサッカーを愛しています。"
+ },
+ {
+  "id": "g2-unit-4-0014",
+  "en": "check out 〜",
+  "kind": "idiom",
+  "q": "Let's ___ that new shop.",
+  "a": "check out",
+  "ja": "あの新しい店を見てみよう。"
+ },
+ {
+  "id": "g2-unit-4-0015",
+  "en": "make a plan",
+  "kind": "idiom",
+  "q": "We should ___ for the trip.",
+  "a": "make a plan",
+  "ja": "旅行の計画を立てるべきです。"
+ },
+ {
+  "id": "g2-unit-4-0016",
+  "en": "near there",
+  "kind": "idiom",
+  "q": "Is there a station ___?",
+  "a": "near there",
+  "ja": "その近くに駅はありますか。"
+ },
+ {
+  "id": "g2-unit-4-0017",
+  "en": "there is[are] 〜",
+  "kind": "idiom",
+  "q": "___ a cat under the table.",
+  "a": "There is",
+  "ja": "テーブルの下にねこが1匹います。"
+ },
+ {
+  "id": "g2-unit-4-0027",
+  "en": "science fiction",
+  "kind": "compound",
+  "q": "I like ___ movies.",
+  "a": "science fiction",
+  "ja": "私は科学小説の映画が好きです。"
+ },
+ {
+  "id": "g2-unit-4-0031",
+  "en": "key chain",
+  "kind": "compound",
+  "q": "I bought a ___ as a gift.",
+  "a": "key chain",
+  "ja": "私はおみやげにキーホルダーを買いました。"
+ },
+ {
+  "id": "g2-unit-4-0036",
+  "en": "go up",
+  "kind": "idiom",
+  "q": "The price will ___ next year.",
+  "a": "go up",
+  "ja": "来年、値段が上がるでしょう。"
+ },
+ {
+  "id": "g2-unit-4-0038",
+  "en": "show 〜 the way",
+  "kind": "idiom",
+  "q": "Can you ___ me ___ to the station?",
+  "a": "show|the way",
+  "ja": "駅への道を教えてもらえますか。"
+ },
+ {
+  "id": "g2-unit-4-0052",
+  "en": "food court",
+  "kind": "compound",
+  "q": "Let's eat at the ___.",
+  "a": "food court",
+  "ja": "フードコートで食べよう。"
+ },
+ {
+  "id": "g2-unit-4-0053",
+  "en": "hot spring",
+  "kind": "compound",
+  "q": "We visited a ___ in Oita.",
+  "a": "hot spring",
+  "ja": "私たちは大分で温泉を訪れました。"
+ },
+ {
+  "id": "g2-unit-4-0076",
+  "en": "go in",
+  "kind": "idiom",
+  "q": "May I ___?",
+  "a": "go in",
+  "ja": "中に入ってもいいですか。"
+ },
+ {
+  "id": "g2-unit-4-0077",
+  "en": "need to 〜",
+  "kind": "idiom",
+  "q": "You ___ practice more.",
+  "a": "need to",
+  "ja": "あなたはもっと練習する必要があります。"
+ },
+ {
+  "id": "g2-unit-4-0078",
+  "en": "over there",
+  "kind": "idiom",
+  "q": "My house is ___.",
+  "a": "over there",
+  "ja": "私の家はあそこです。"
+ },
+ {
+  "id": "g2-unit-4-0080",
+  "en": "for example",
+  "kind": "idiom",
+  "q": "I like fruit, ___, apples and bananas.",
+  "a": "for example",
+  "ja": "私は果物、例えばりんごやバナナが好きです。"
+ },
+ {
+  "id": "g2-unit-4-0081",
+  "en": "here and there",
+  "kind": "idiom",
+  "q": "Flowers are blooming ___.",
+  "a": "here and there",
+  "ja": "あちこちで花が咲いています。"
+ },
+ {
+  "id": "g2-unit-4-0082",
+  "en": "one of 〜",
+  "kind": "idiom",
+  "q": "He is ___ my best friends.",
+  "a": "one of",
+  "ja": "彼は私の親友のうちの1人です。"
+ },
+ {
+  "id": "g2-unit-4-0083",
+  "en": "feel like -ing",
+  "kind": "idiom",
+  "q": "I ___ eating something sweet.",
+  "a": "feel like",
+  "ja": "私は何か甘いものを食べたい気がします。"
+ },
+ {
+  "id": "g2-unit-4-0084",
+  "en": "right now",
+  "kind": "idiom",
+  "q": "I am busy ___.",
+  "a": "right now",
+  "ja": "私は今すぐは忙しいです。"
+ },
+ {
+  "id": "g2-unit-5-0006",
+  "en": "fire drill",
+  "kind": "compound",
+  "q": "We have a ___ every year.",
+  "a": "fire drill",
+  "ja": "私たちは毎年防火訓練をします。"
+ },
+ {
+  "id": "g2-unit-5-0013",
+  "en": "group work",
+  "kind": "compound",
+  "q": "We enjoy ___ in English class.",
+  "a": "group work",
+  "ja": "私たちは英語の授業で共同作業を楽しみます。"
+ },
+ {
+  "id": "g2-unit-5-0036",
+  "en": "in advance",
+  "kind": "idiom",
+  "q": "Please tell me ___.",
+  "a": "in advance",
+  "ja": "前もって教えてください。"
+ },
+ {
+  "id": "g2-unit-5-0037",
+  "en": "must not 〜",
+  "kind": "idiom",
+  "q": "You ___ run here.",
+  "a": "must not",
+  "ja": "ここで走ってはいけません。"
+ },
+ {
+  "id": "g2-unit-5-0038",
+  "en": "get into 〜",
+  "kind": "idiom",
+  "q": "Don't ___ the water here.",
+  "a": "get into",
+  "ja": "ここで水の中へ入ってはいけません。"
+ },
+ {
+  "id": "g2-unit-5-0039",
+  "en": "in a group",
+  "kind": "idiom",
+  "q": "Let's talk ___.",
+  "a": "in a group",
+  "ja": "グループで話しましょう。"
+ },
+ {
+  "id": "g2-unit-5-0040",
+  "en": "stay away from 〜",
+  "kind": "idiom",
+  "q": "Please ___ the fire.",
+  "a": "stay away from",
+  "ja": "火から離れていてください。"
+ },
+ {
+  "id": "g2-unit-5-0066",
+  "en": "post office",
+  "kind": "compound",
+  "q": "The ___ is next to the bank.",
+  "a": "post office",
+  "ja": "郵便局は銀行の隣にあります。"
+ },
+ {
+  "id": "g2-unit-5-0069",
+  "en": "depend on 〜",
+  "kind": "idiom",
+  "q": "It ___ the weather.",
+  "a": "depends on",
+  "ja": "それは天気次第です。"
+ },
+ {
+  "id": "g2-unit-5-0070",
+  "en": "have to 〜",
+  "kind": "idiom",
+  "q": "I ___ go home now.",
+  "a": "have to",
+  "ja": "私はもう家に帰らなければなりません。"
+ },
+ {
+  "id": "g2-unit-5-0071",
+  "en": "hold on",
+  "kind": "idiom",
+  "q": "___ tight!",
+  "a": "Hold on",
+  "ja": "しっかりつかまって。"
+ },
+ {
+  "id": "g2-unit-5-0072",
+  "en": "in some cases",
+  "kind": "idiom",
+  "q": "___, this rule is different.",
+  "a": "In some cases",
+  "ja": "場合によっては、この規則は違います。"
+ },
+ {
+  "id": "g2-unit-5-0073",
+  "en": "keep -ing",
+  "kind": "idiom",
+  "q": "You should ___ trying.",
+  "a": "keep",
+  "ja": "あなたは挑戦し続けるべきです。"
+ },
+ {
+  "id": "g2-unit-5-0074",
+  "en": "take care of 〜",
+  "kind": "idiom",
+  "q": "I ___ my little sister.",
+  "a": "take care of",
+  "ja": "私は妹の世話をします。"
+ },
+ {
+  "id": "g2-unit-5-0085",
+  "en": "message board",
+  "kind": "compound",
+  "q": "I left a note on the ___.",
+  "a": "message board",
+  "ja": "私は伝言板にメモを残しました。"
+ },
+ {
+  "id": "g2-unit-5-0103",
+  "en": "remember to 〜",
+  "kind": "idiom",
+  "q": "___ lock the door.",
+  "a": "Remember to",
+  "ja": "忘れずにドアにかぎをかけてください。"
+ },
+ {
+  "id": "g2-unit-5-0104",
+  "en": "call for 〜",
+  "kind": "idiom",
+  "q": "They ___ help.",
+  "a": "call for",
+  "ja": "彼らは助けを求めています。"
+ },
+ {
+  "id": "g2-daily-life-scene-5-0008",
+  "en": "change to 〜",
+  "kind": "idiom",
+  "q": "___ the Blue Line at the next station.",
+  "a": "Change to",
+  "ja": "次の駅でブルーラインに乗り換えてください。"
+ },
+ {
+  "id": "g2-daily-life-scene-5-0011",
+  "en": "get off",
+  "kind": "idiom",
+  "q": "We ___ at the next stop.",
+  "a": "get off",
+  "ja": "私たちは次の停留所で降ります。"
+ },
+ {
+  "id": "g2-daily-life-scene-5-0012",
+  "en": "how to 〜",
+  "kind": "idiom",
+  "q": "I don't know ___ use this.",
+  "a": "how to",
+  "ja": "私はこれの使い方がわかりません。"
+ },
+ {
+  "id": "g2-daily-life-scene-6-0011",
+  "en": "go home",
+  "kind": "idiom",
+  "q": "Let's ___ together.",
+  "a": "go home",
+  "ja": "いっしょに家に帰ろう。"
+ },
+ {
+  "id": "g2-daily-life-scene-6-0013",
+  "en": "lie down",
+  "kind": "idiom",
+  "q": "You should ___ and rest.",
+  "a": "lie down",
+  "ja": "横になって休んだほうがいいですよ。"
+ },
+ {
+  "id": "g2-daily-life-scene-6-0014",
+  "en": "see a doctor",
+  "kind": "idiom",
+  "q": "You should ___ today.",
+  "a": "see a doctor",
+  "ja": "今日、医師に診てもらったほうがいいですよ。"
+ },
+ {
+  "id": "g2-daily-life-scene-6-0016",
+  "en": "take a rest",
+  "kind": "idiom",
+  "q": "Let's ___ here.",
+  "a": "take a rest",
+  "ja": "ここでひと休みしよう。"
+ },
+ {
+  "id": "g2-unit-6-0003",
+  "en": "guide dog",
+  "kind": "compound",
+  "q": "A ___ helps its owner.",
+  "a": "guide dog",
+  "ja": "盲導犬は飼い主を助けます。"
+ },
+ {
+  "id": "g2-unit-6-0014",
+  "en": "visually impaired",
+  "kind": "idiom",
+  "q": "This book is for ___ people.",
+  "a": "visually impaired",
+  "ja": "この本は視覚障がいのある人のためのものです。"
+ },
+ {
+  "id": "g2-unit-6-0021",
+  "en": "make friends",
+  "kind": "idiom",
+  "q": "I want to ___ with him.",
+  "a": "make friends",
+  "ja": "私は彼と友達になりたいです。"
+ },
+ {
+  "id": "g2-unit-6-0022",
+  "en": "pay attention to 〜",
+  "kind": "idiom",
+  "q": "Please ___ the sign.",
+  "a": "pay attention to",
+  "ja": "その標識に注意を払ってください。"
+ },
+ {
+  "id": "g2-unit-6-0023",
+  "en": "all over the world",
+  "kind": "idiom",
+  "q": "This song is famous ___.",
+  "a": "all over the world",
+  "ja": "この歌は世界中で有名です。"
+ },
+ {
+  "id": "g2-unit-6-0043",
+  "en": "exchange student",
+  "kind": "compound",
+  "q": "An ___ came to our class.",
+  "a": "exchange student",
+  "ja": "交換留学生が私たちのクラスに来ました。"
+ },
+ {
+  "id": "g2-unit-6-0050",
+  "en": "learn to 〜",
+  "kind": "idiom",
+  "q": "I want to ___ play the guitar.",
+  "a": "learn to",
+  "ja": "私はギターを弾けるようになりたいです。"
+ },
+ {
+  "id": "g2-unit-6-0051",
+  "en": "pick up 〜",
+  "kind": "idiom",
+  "q": "Please ___ the trash.",
+  "a": "pick up",
+  "ja": "ごみを拾い上げてください。"
+ },
+ {
+  "id": "g2-unit-6-0061",
+  "en": "according to 〜",
+  "kind": "idiom",
+  "q": "___ the news, it will rain.",
+  "a": "According to",
+  "ja": "ニュースによれば、雨が降るでしょう。"
+ },
+ {
+  "id": "g2-unit-6-0064",
+  "en": "talk to 〜",
+  "kind": "idiom",
+  "q": "You should ___ your teacher.",
+  "a": "talk to",
+  "ja": "先生に相談したほうがいいですよ。"
+ },
+ {
+  "id": "g2-unit-6-0065",
+  "en": "think about 〜",
+  "kind": "idiom",
+  "q": "I often ___ my future.",
+  "a": "think about",
+  "ja": "私はよく自分の将来のことを考えます。"
+ },
+ {
+  "id": "g2-unit-6-0066",
+  "en": "all the 〜",
+  "kind": "idiom",
+  "q": "I read ___ books in this box.",
+  "a": "all the",
+  "ja": "私はこの箱の全ての本を読みました。"
+ },
+ {
+  "id": "g2-unit-6-0067",
+  "en": "look up 〜",
+  "kind": "idiom",
+  "q": "___ this word in your dictionary.",
+  "a": "Look up",
+  "ja": "この単語を辞書で調べてください。"
+ },
+ {
+  "id": "g2-let-s-read-2-0003",
+  "en": "figure skater",
+  "kind": "compound",
+  "q": "She is a famous ___.",
+  "a": "figure skater",
+  "ja": "彼女は有名なフィギュアスケーターです。"
+ },
+ {
+  "id": "g2-let-s-read-2-0004",
+  "en": "ice skating",
+  "kind": "compound",
+  "q": "I enjoy ___ in winter.",
+  "a": "ice skating",
+  "ja": "私は冬にアイススケートを楽しみます。"
+ },
+ {
+  "id": "g2-let-s-read-2-0036",
+  "en": "be able to 〜",
+  "kind": "idiom",
+  "q": "I ___ swim fast.",
+  "a": "am able to",
+  "ja": "私は速く泳ぐことができます。"
+ },
+ {
+  "id": "g2-let-s-read-2-0037",
+  "en": "take away 〜",
+  "kind": "idiom",
+  "q": "Nothing can ___ my dream.",
+  "a": "take away",
+  "ja": "何も私の夢を奪うことはできません。"
+ },
+ {
+  "id": "g2-let-s-read-2-0038",
+  "en": "because of 〜",
+  "kind": "idiom",
+  "q": "We stayed home ___ the rain.",
+  "a": "because of",
+  "ja": "雨のせいで私たちは家にいました。"
+ },
+ {
+  "id": "g2-let-s-read-2-0039",
+  "en": "do[try] one's best",
+  "kind": "idiom",
+  "q": "I will ___ in the game.",
+  "a": "do my best",
+  "ja": "私は試合で全力を尽くします。"
+ },
+ {
+  "id": "g2-let-s-read-2-0040",
+  "en": "above all",
+  "kind": "idiom",
+  "q": "___, be kind to others.",
+  "a": "Above all",
+  "ja": "何よりも、他人に親切にしなさい。"
+ },
+ {
+  "id": "g2-let-s-read-2-0041",
+  "en": "all of 〜",
+  "kind": "idiom",
+  "q": "___ us like this song.",
+  "a": "All of",
+  "ja": "私たち全員がこの歌を好きです。"
+ },
+ {
+  "id": "g2-let-s-read-2-0043",
+  "en": "be on one's side",
+  "kind": "idiom",
+  "q": "Don't worry. I ___.",
+  "a": "am on your side",
+  "ja": "心配しないで。私はあなたの味方です。"
+ },
+ {
+  "id": "g2-let-s-read-2-0044",
+  "en": "the same",
+  "kind": "idiom",
+  "q": "We think ___.",
+  "a": "the same",
+  "ja": "私たちは同じことを考えています。"
+ },
+ {
+  "id": "g2-you-can-do-it-2-0010",
+  "en": "sign language",
+  "kind": "compound",
+  "q": "She is learning ___.",
+  "a": "sign language",
+  "ja": "彼女は手話を習っています。"
+ },
+ {
+  "id": "g2-daily-life-scene-7-0012",
+  "en": "up close",
+  "kind": "idiom",
+  "q": "I saw the bird ___.",
+  "a": "up close",
+  "ja": "私はその鳥を近くで見ました。"
+ },
+ {
+  "id": "g2-unit-7-0014",
+  "en": "come up with 〜",
+  "kind": "idiom",
+  "q": "Can you ___ a good idea?",
+  "a": "come up with",
+  "ja": "よい考えを思いつきますか。"
+ },
+ {
+  "id": "g2-unit-7-0023",
+  "en": "take place",
+  "kind": "idiom",
+  "q": "The festival will ___ in August.",
+  "a": "take place",
+  "ja": "その祭りは8月に行われます。"
+ },
+ {
+  "id": "g2-unit-7-0042",
+  "en": "blow one's lines",
+  "kind": "idiom",
+  "q": "I ___ on the stage.",
+  "a": "blew my lines",
+  "ja": "私は舞台でせりふを忘れました。"
+ },
+ {
+  "id": "g2-unit-7-0043",
+  "en": "calm down",
+  "kind": "idiom",
+  "q": "Please ___ and listen.",
+  "a": "calm down",
+  "ja": "落ち着いて聞いてください。"
+ },
+ {
+  "id": "g2-unit-7-0044",
+  "en": "take a break",
+  "kind": "idiom",
+  "q": "Let's ___ for ten minutes.",
+  "a": "take a break",
+  "ja": "10分間ひと休みしよう。"
+ },
+ {
+  "id": "g2-unit-8-0014",
+  "en": "make up",
+  "kind": "idiom",
+  "q": "They had a fight, but they ___ soon.",
+  "a": "made up",
+  "ja": "彼らはけんかをしましたが、すぐに仲直りしました。"
+ },
+ {
+  "id": "g2-unit-8-0015",
+  "en": "be hard on 〜",
+  "kind": "idiom",
+  "q": "Don't ___ yourself.",
+  "a": "be hard on",
+  "ja": "自分に厳しく当たりすぎないで。"
+ },
+ {
+  "id": "g2-unit-8-0018",
+  "en": "try one's best",
+  "kind": "idiom",
+  "q": "I will ___ tomorrow.",
+  "a": "try my best",
+  "ja": "私は明日、全力を尽くします。"
+ },
+ {
+  "id": "g2-unit-8-0020",
+  "en": "you know",
+  "kind": "idiom",
+  "q": "He is, ___, a very kind person.",
+  "a": "you know",
+  "ja": "彼は、ほらあの、とても親切な人です。"
+ },
+ {
+  "id": "g2-unit-8-0030",
+  "en": "sea breeze",
+  "kind": "compound",
+  "q": "The ___ feels good.",
+  "a": "sea breeze",
+  "ja": "海風が気持ちいいです。"
+ },
+ {
+  "id": "g2-unit-8-0032",
+  "en": "do fine",
+  "kind": "idiom",
+  "q": "Don't worry. You will ___.",
+  "a": "do fine",
+  "ja": "心配しないで。ちゃんとできますよ。"
+ },
+ {
+  "id": "g2-unit-8-0033",
+  "en": "in 〜 minute(s)",
+  "kind": "idiom",
+  "q": "The train will come ___.",
+  "a": "in five minutes",
+  "ja": "電車はあと5分で来ます。"
+ },
+ {
+  "id": "g2-unit-8-0039",
+  "en": "Valentine's (Day)",
+  "kind": "compound",
+  "q": "I give chocolate on ___.",
+  "a": "Valentine's Day",
+  "ja": "私はバレンタインデーにチョコレートをあげます。"
+ },
+ {
+  "id": "g2-unit-8-0054",
+  "en": "a second",
+  "kind": "idiom",
+  "q": "Wait ___, please.",
+  "a": "a second",
+  "ja": "ちょっとの間待ってください。"
+ },
+ {
+  "id": "g2-unit-8-0056",
+  "en": "go well",
+  "kind": "idiom",
+  "q": "I hope everything will ___.",
+  "a": "go well",
+  "ja": "すべてうまくいくといいですね。"
+ },
+ {
+  "id": "g2-let-s-read-3-0006",
+  "en": "mobile phone",
+  "kind": "compound",
+  "q": "I forgot my ___ at home.",
+  "a": "mobile phone",
+  "ja": "私は携帯電話を家に忘れました。"
+ },
+ {
+  "id": "g2-let-s-read-3-0040",
+  "en": "in fact",
+  "kind": "idiom",
+  "q": "___, he is my brother.",
+  "a": "In fact",
+  "ja": "実際は、彼は私の兄です。"
+ },
+ {
+  "id": "g2-let-s-read-3-0042",
+  "en": "tears of joy",
+  "kind": "compound",
+  "q": "She cried ___.",
+  "a": "tears of joy",
+  "ja": "彼女はうれし涙を流しました。"
+ },
+ {
+  "id": "g2-let-s-read-3-0043",
+  "en": "around the world",
+  "kind": "idiom",
+  "q": "He wants to travel ___.",
+  "a": "around the world",
+  "ja": "彼は世界中を旅したいと思っています。"
+ },
+ {
+  "id": "g2-let-s-read-3-0044",
+  "en": "be born",
+  "kind": "idiom",
+  "q": "I ___ in Osaka.",
+  "a": "was born",
+  "ja": "私は大阪で生まれました。"
+ },
+ {
+  "id": "g2-let-s-read-3-0045",
+  "en": "more than 〜",
+  "kind": "idiom",
+  "q": "I have ___ ten books.",
+  "a": "more than",
+  "ja": "私は10冊より多くの本を持っています。"
+ },
+ {
+  "id": "g2-let-s-read-3-0047",
+  "en": "be careful of 〜",
+  "kind": "idiom",
+  "q": "Please ___ cars.",
+  "a": "be careful of",
+  "ja": "車に気をつけてください。"
+ }
+]

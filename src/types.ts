@@ -155,6 +155,80 @@ export interface DrillStore {
   presets: DrillPreset[];
 }
 
+// ───────────────────────────────────────────────
+// 熟語モード
+//
+// 熟語（look for 〜 / get up など）だけを集めて、短い例文の穴あきや
+// 前置詞の選択で高速に回す仕組み。範囲は番号ではなく「学年」で決める。
+// ───────────────────────────────────────────────
+
+/** 熟語1件ぶんの例文データ（public/data/idioms.json）。id は words.json と共通 */
+export interface IdiomEntry {
+  id: string;
+  /** 見出しの形。"look for 〜" のように 〜 を含みうる */
+  en: string;
+  /** idiom＝熟語（うしろに前置詞が続くものなど） / compound＝2語で1つの名詞 */
+  kind: 'idiom' | 'compound';
+  /** 例文。空所は "___"。空所が2つの熟語もある（not 〜 very much など） */
+  q: string;
+  /** 空所に実際に入る形。空所が複数なら "|" 区切りで前から順に */
+  a: string;
+  /** 例文の和訳 */
+  ja: string;
+}
+
+/**
+ * 出題形式。
+ *  meaning … 熟語を見て意味を選ぶ（いちばん速い）
+ *  cloze   … 例文の空所に入る熟語を選ぶ
+ *  slot    … 熟語の一部（多くは前置詞）を選ぶ
+ *  reverse … 意味を見て熟語を選ぶ（いちばん難しい）
+ */
+export type IdiomFormat = 'meaning' | 'cloze' | 'slot' | 'reverse';
+
+/** 「おまかせ」は習熟度に応じて上の4つを切り替える */
+export type IdiomMode = 'auto' | IdiomFormat;
+
+export interface IdiomOptions {
+  /** 対象の学年。空にはできない */
+  grades: number[];
+  /** 「2語で1つの名詞」（post office など）も混ぜるか */
+  includeCompound: boolean;
+  mode: IdiomMode;
+}
+
+export interface IdiomState {
+  options: IdiomOptions;
+  /** 何周目か（1始まり） */
+  round: number;
+  /** この周の残りキュー（熟語ID。先頭から出す） */
+  queue: string[];
+  roundTotal: number;
+  /** 熟語ごとの成績。ドリルと同じ形を使う */
+  stats: Record<string, DrillStat>;
+  /** 「まちがえた熟語だけ」の特別な周かどうか（周回数に数えない） */
+  wrongOnly: boolean;
+}
+
+/** 熟語モードの1問 */
+export interface IdiomQuestion {
+  entry: IdiomEntry;
+  word: Word;
+  format: IdiomFormat;
+  /** 画面に出す問題文。cloze/slot では空所が "___" で入っている */
+  prompt: string;
+  /** 問題と一緒に見せる日本語（cloze は例文の訳、slot は熟語の意味） */
+  hint?: string;
+  /** 4つの選択肢（正解を含む・シャッフル済み） */
+  choices: string[];
+  /** 正解の選択肢 */
+  answer: string;
+  /** 答え合わせで見せる、空所が埋まった英文（cloze/slot のとき） */
+  filled?: string;
+  /** 読み上げる英文 */
+  speech: string;
+}
+
 export interface Store {
   version: 2;
   cards: Record<string, CardState>;
@@ -162,6 +236,8 @@ export interface Store {
   settings: Settings;
   history: HistoryEntry[];
   drill: DrillStore;
+  /** 熟語モードの進行状況。一度も始めていなければ null */
+  idiom: IdiomState | null;
 }
 
 /** セッション中の1問 */

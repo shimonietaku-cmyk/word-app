@@ -4,6 +4,7 @@
 import { createContext, useContext } from 'react';
 import type { AnswerResult, Store, Word } from '../types';
 import type { WordIndex } from '../lib/words';
+import type { IdiomIndex } from '../lib/idioms';
 
 export interface AppState {
   /** 読み込み状態 */
@@ -12,6 +13,8 @@ export interface AppState {
   /** 単語データと索引 */
   words: Word[];
   index: WordIndex | null;
+  /** 熟語モード用の索引。熟語データが無い場合は null */
+  idioms: IdiomIndex | null;
   /** 学習記録・設定 */
   store: Store;
 }
@@ -21,6 +24,11 @@ export interface AppActions {
   update: (updater: (prev: Store) => Store) => void;
   /** 1問ぶんの解答を記録に反映する（FSRS・Stage・統計） */
   recordAnswer: (result: AnswerResult) => void;
+  /**
+   * 「今日の実績」だけを増やす（FSRSの復習間隔には触れない）。
+   * 熟語モードのように短時間で何周も回すものは、これを使う。
+   */
+  recordPractice: (correct: boolean) => void;
   /** セッション完了時にストリークと履歴を更新する */
   finishSession: (answered: number) => void;
   /** 全消去 */

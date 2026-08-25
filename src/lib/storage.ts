@@ -51,6 +51,7 @@ export function createInitialStore(now: Date = new Date()): Store {
     },
     history: [],
     drill: { current: null, presets: [] },
+    idiom: null,
   };
 }
 
@@ -133,6 +134,8 @@ export function mergeWithDefaults(parsed: Partial<Store>, initial: Store): Store
       current: isObject(drill.current) ? (drill.current as Store['drill']['current']) : null,
       presets: Array.isArray(drill.presets) ? drill.presets : [],
     },
+    // 熟語モードは後から足した機能なので、古い保存データには入っていない
+    idiom: isObject(parsed.idiom) ? (parsed.idiom as Store['idiom']) : null,
   };
 }
 
